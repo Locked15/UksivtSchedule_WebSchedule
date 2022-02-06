@@ -46,18 +46,37 @@
 		}
 
 		/**
+		 * Функция для вставки отстутпа от "футера" страницы, чтобы контент не попадал за него.
+		 */
+		function insertMargin()
+		{
+			var main = document.getElementById("Divider");
+			var footer = document.getElementById("FooterBlock");
+
+			// Чтобы футер не подходил очень близко к контенту, увеличиваем отступ.
+			main.style.marginTop = footer.clientHeight + 50 + 'px';
+		}
+
+		/**
 		 * Событие, происходящее при загрузке страницы.
 		 * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
+		 * 
+		 * Также устанавливает отступ от нижней границы ("футера").
 		 */
 		function onLoad() 
 		{
 			insertDateTime();
+
 			setInterval(insertDateTime, 60000);
 		}
+
+		window.addEventListener('load', onLoad);
+		window.addEventListener('load', insertMargin);
+		window.addEventListener('resize', insertMargin);
 	</script>
 </head>
 
-<body onload="onLoad()">
+<body>
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
 			<div class="container-fluid">
@@ -107,16 +126,16 @@
 		</nav>
 	</header>
 
-	<div class="container">
+	<div id="MainBlock" class="container content">
 		<main role="main" class="pb-3">
 			@RenderBody()
 		</main>
 	</div>
 
-	<!-- Отступ для "подвала" сайта. -->
-	<p style="margin-top:10%"></p>
+	<!-- Отступ для футера со значениями по умолчанию. -->
+	<p id="Divider" style="margin-top:15%"></p>
 
-	<footer class="border-top footer text-muted">
+	<footer id="FooterBlock" class="border-top footer text-muted">
 		<div class="container">
 			<div class="float-lg-start">
 				Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET</a>.<br />
