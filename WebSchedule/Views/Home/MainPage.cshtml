@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+@using WebSchedule.Models;
+@using WebSchedule.Schedule.Getter;
+
+@model ScheduleApi;
+
+<html lang="ru">
+<head>
+	<title>Главная</title>
+
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<div style="margin-top:5%">
+		<h1 class="display-4" style="text-align:center">Поиск</h1>
+		<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">
+			<form>
+				<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:50%; text-align:center;"/>
+				<br/> <br/>
+
+				<a class="btn btn-outline-primary" asp-controller="Home" asp-action="Random">Случайная группа</a>
+				<button class="btn btn-outline-primary" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

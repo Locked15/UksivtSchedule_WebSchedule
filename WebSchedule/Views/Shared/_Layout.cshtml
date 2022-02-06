@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	@await RenderSectionAsync("Scripts", required: false)
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
+
+	<script type="text/javascript">
+		/**
+		 * Функция, вставляющая цифру 0 перед значениями меньше 10.
+		 */
+		function insertZero(value) 
+		{
+			if (value < 10)
+			{
+				value = '0' + value;
+			}
+
+			return value;
+		}
+
+		/**
+		 * Функция для вставки даты и времени на страницу.
+		 */
+		function insertDateTime() 
+		{
+				var allDate = new Date();
+				var day = insertZero(allDate.getDate());
+				var month = insertZero(allDate.getMonth() + 1);
+				var year = allDate.getFullYear();
+				var hour = insertZero(allDate.getHours());
+				var minute = insertZero(allDate.getMinutes());
+
+				document.getElementById("CurrentTime").innerHTML = hour + ':' + minute;
+				document.getElementById("CurrentDate").innerHTML = day + '.' + month + '.' + year + '!';
+		}
+
+		/**
+		 * Событие, происходящее при загрузке страницы.
+		 * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
+		 */
+		function onLoad() 
+		{
+			insertDateTime();
+			setInterval(insertDateTime, 60000);
+		}
+	</script>
+</head>
+
+<body onload="onLoad()">
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+			<div class="container-fluid">
+				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage">Расписание УКСИВТ</a>
+
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
+					<!-- Левая часть. -->
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<!-- Информация. -->
+						<li class="nav-item" style="font-family:'Georgia Pro'">
+							<a class="nav-link text-dark" asp-controller="Home" asp-action="Info">Информация</a>
+						</li>
+
+						<!-- Настройки. -->
+						<li class="nav-item" style="font-family:'Georgia Pro'">
+							<a class="nav-link text-dark" asp-controller="Home" asp-action="Settings">Настройки</a>
+						</li>
+
+						<!-- Дополнительные ссылки. -->
+						<li class="nav-item dropdown">
+							<a id="links" class="nav-link text-dark dropdown-toggle" style="font-family:'Georgia Pro'" data-toggle="dropdown"
+							   aria-haspopup="true" aria-expanded="false" href="#">Ссылки</a>
+
+							<div class="dropdown-menu" aria-labelledby="links">
+								<!-- Официальный сайт. -->
+								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
+
+								<!-- Группа в ВК. -->
+								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
+
+								<!-- Группа в Instagram. -->
+								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://www.instagram.com/uksivt_day/">Группа Instagram</a>
+							</div>
+						</li>
+					</ul>
+
+					<!-- Правая часть. -->
+					<ul class="navbar-nav">
+						<!-- Вывод времени. -->
+						<li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
+							<div id="CurrentTime"> </div>
+							<div id="CurrentDate"> </div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	<!-- Отступ для "подвала" сайта. -->
+	<br /> <br />
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			<div class="float-lg-start">
+				Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET</a>.<br />
+				2021 — 2022.
+			</div>
+
+			<div class="float-lg-end">
+				<p>Создано: <a href="https://github.com/Locked15" style="font-style:italic;">Locked15</a>.</p>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

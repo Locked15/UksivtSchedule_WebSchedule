@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+@using WebSchedule.Schedule.Getter;
+
+<html  lang="ru">
+<head>
+	<title>Настройки</title>
+
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<main class="accordion-body">
+		<h1 class="display-3" style="text-align:center">Настройки</h1>
+		<div class="text-dark" style="font-family:'Georgia Pro'">
+			<p>
+				На данной странице можно настроить опции выбора расписания. <br />
+				Перед тем как перейти к самой настройке, стоит узнать, за что отвечают атрибуты.
+			</p>
+		</div>
+
+		<h2>Использовать Базу Данных как источник</h2>
+		<div class="text-dark" style="font-family:'Georgia Pro'">
+			<p>
+				API, используемая данной страницей способна получать расписание двумя путями:
+			</p>
+
+			<ul>
+				<li>Через файлы "*.json", также называемые "активами" или "ассетами";</li>
+				<li>Через базу данных, размещенную в облаке <i>MS Azure</i>.</li>
+			</ul>
+
+			<p>
+				Оба способа позволяют получать корректное расписание. Работа через базу позволяет получать расписание несколько быстрее,
+				но получение через ассеты позволяет получать расписание даже тогда, когда база недоступна. <br />
+				Поэтому пользователю дается выбор.
+			</p>
+		</div>
+
+		<h2>Выбирать небезопасные значения</h2>
+		<div class="text-dark" style="font-family:'Georgia Pro'">
+			<p>
+				В случае, если пользователь выбирает в качестве источника базу данных, то проявляется одна небольшая проблема.<br />
+				Оригинальное расписание было оформлено не единообразно. Это значит, что какие-то значения могли быть искажены при импортировании.
+			</p>
+
+			<p>
+				В случае базы данных такие "искаженные" значения легко отследить.
+				А вот в ассетах все намного сложнее, их там почти невозможно отследить.
+			</p>
+
+			<p>
+				Поэтому для выборки из базы и была придумана вторая опция. В списке ниже представлены отличия, зависящие от её состояния:
+			</p>
+
+			<ul>
+				<li>При активной опции, все "негарантированные" значения, которые могли быть искажены, будут заменены на свои значения по умолчанию;</li>
+
+				<li>
+					При выключенной же опции, будут собираться все данные. В том числе и те, которые могли быть искажены. <br />
+					Разработчик НЕ гарантирует, что они будут именно такими, как предполагалось изначально.
+				</li>
+			</ul>
+		</div>
+
+		<h2 class="display-6" style="text-align:center">Настройка</h2>
+		<div class="text-dark" style="font-family:'Georgia Pro'; text-align:center;">
+			Чтобы включить ту или иную опцию, отметьте её. <br />
+			Когда настройка будет завершена, нажмите на кнопку, чтобы сохранить настройки.
+		</div>
+
+		<div style="text-align:center;">
+			<form>
+				<label class="text-dark" for="db" style="font-family:'Georgia Pro'; font-style:italic;">Использовать Базу Данных как источник? </label>
+				<input id="db" type="checkbox" name="useDb" checked=@ScheduleApi.UseDataBase />
+				<br /><br />
+
+				<label class="text-dark" for="select" style="font-family:'Georgia Pro'; font-style:italic;">Выбирать 'небезопасные' значения? </label>
+				<input id="select" type="checkbox" name="selectUnsecure" checked=@ScheduleApi.SelectUnsecure />
+				<br /><br />
+
+				<button type="submit" formmethod="post" asp-controller="Home" asp-action="SaveSettings" class="btn btn-secondary">Сохранить</button>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

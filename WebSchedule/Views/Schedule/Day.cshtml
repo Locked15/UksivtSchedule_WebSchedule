@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+@using WebSchedule.Other
+@model ScheduleModel;
+
+<html lang="ru">
+<head>
+	<title>@Model.GroupName — Выбор дня</title>
+
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<h1 class="display-4" style="text-align:center">День недели</h1>
+	<div style="text-align:center; font-family:'Georgia Pro';">
+		<p class="text-dark">
+			Остается выбрать день недели для получения итогового расписания.
+		</p>
+	</div>
+
+	<h2 class="display-6" style="text-align:center; margin-top:3%;">Выбор</h2>
+	<div style="text-align:center">
+		<p class="text-dark" style="font-family:'Georgia Pro'">
+			Нажмите на интересующий Вас день.
+		</p>
+
+		@{
+			for (int i = 0; i < 7; i++)
+			{
+				String name = i.GetDayByIndex();
+
+				<p>
+					<a class="btn btn-outline-primary" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@i>@name</a>
+				</p>
+			}
+		}
+	</div>
+</body>
+</html>

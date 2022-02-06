@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+
+		<Nullable>enable</Nullable>
+
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Resource Include="Resources" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Other\Data\" />
+	</ItemGroup>
+</Project>

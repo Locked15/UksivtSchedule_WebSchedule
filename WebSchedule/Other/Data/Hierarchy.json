@@ -1,0 +1,572 @@
+[
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "19\u0417\u0418\u041E-1"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "19\u0417\u0418\u041E-2"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "19\u0417\u0418\u041E-3"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "19\u0417\u0418\u041E-4"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "20\u0417\u0418\u041E-1"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "20\u0417\u0418\u041E-2"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "20\u0417\u0418\u041E-3"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u0443\u041B",
+    "GroupName": "21\u0443\u041B-1"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u042D",
+    "GroupName": "19\u042D-1"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u042D",
+    "GroupName": "19\u042D-2"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u042D",
+    "GroupName": "20\u042D-1"
+  },
+  {
+    "BranchName": "Economy",
+    "DirectionName": "\u042D",
+    "GroupName": "20\u042D-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0411\u0414",
+    "GroupName": "21\u0411\u0414-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "21\u0412\u0415\u0411-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "21\u0412\u0415\u0411-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "21\u0412\u0415\u0411-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "21\u0417\u0418\u041E-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "21\u0417\u0418\u041E-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0417\u0418\u041E",
+    "GroupName": "21\u0417\u0418\u041E-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "21\u0418\u0421-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041B",
+    "GroupName": "21\u041B-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041B",
+    "GroupName": "21\u041B-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "21\u041E\u0418\u0411-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "21\u041E\u0418\u0411-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "21\u041E\u0418\u0411-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F",
+    "GroupName": "21\u041F-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F",
+    "GroupName": "21\u041F-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F",
+    "GroupName": "21\u041F-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F",
+    "GroupName": "21\u041F-4"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F",
+    "GroupName": "21\u041F-5"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "21\u041F\u0414-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "21\u041F\u0414-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "21\u041F\u0414-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "21\u041F\u041E-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "21\u041F\u041E-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "21\u041F\u041E-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "21\u041F\u041E-4"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-3"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-4"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-5"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "21\u041F\u0421\u0410-6"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0421\u0410",
+    "GroupName": "21\u0421\u0410-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u0421\u0410",
+    "GroupName": "21\u0421\u0410-2"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u042D",
+    "GroupName": "21\u042D-1"
+  },
+  {
+    "BranchName": "General",
+    "DirectionName": "\u042D",
+    "GroupName": "21\u042D-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "19\u041F\u0414-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "19\u041F\u0414-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "19\u041F\u0414-3"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "19\u041F\u0414-4"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "20\u041F\u0414-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "20\u041F\u0414-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "20\u041F\u0414-3"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "20\u041F\u0414-4"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0414",
+    "GroupName": "20\u041F\u0414-5"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "19\u041F\u041E-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "19\u041F\u041E-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "19\u041F\u041E-3"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "19\u041F\u041E-4"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "20\u041F\u041E-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "20\u041F\u041E-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "20\u041F\u041E-3"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u041E",
+    "GroupName": "20\u041F\u041E-4"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "19\u041F\u0421\u0410-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "19\u041F\u0421\u0410-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "19\u041F\u0421\u0410-3"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "19\u041F\u0421\u0410-4"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "20\u041F\u0421\u0410-1"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "20\u041F\u0421\u0410-2"
+  },
+  {
+    "BranchName": "Law",
+    "DirectionName": "\u041F\u0421\u0410",
+    "GroupName": "20\u041F\u0421\u0410-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0411\u0414",
+    "GroupName": "20\u0411\u0414-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "19\u0412\u0415\u0411-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "19\u0412\u0415\u0411-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "19\u0412\u0415\u0411-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "20\u0412\u0415\u0411-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "20\u0412\u0415\u0411-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0412\u0415\u0411",
+    "GroupName": "20\u0412\u0415\u0411-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418",
+    "GroupName": "18\u0418-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418",
+    "GroupName": "18\u0418-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418",
+    "GroupName": "18\u0418-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "18\u0418\u0421-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "18\u0418\u0421-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "18\u0418\u0421-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "19\u0418\u0421-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "19\u0418\u0421-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u0418\u0421",
+    "GroupName": "20\u0418\u0421-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "19\u041E\u0418\u0411-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "19\u041E\u0418\u0411-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "20\u041E\u0418\u0411-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041E\u0418\u0411",
+    "GroupName": "20\u041E\u0418\u0411-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "18\u041F-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "18\u041F-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "18\u041F-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "18\u041F-4"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "19\u041F-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "19\u041F-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "19\u041F-3"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "19\u041F-4"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "20\u041F-1"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "20\u041F-2"
+  },
+  {
+    "BranchName": "Programming",
+    "DirectionName": "\u041F",
+    "GroupName": "20\u041F-3"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u041A\u0421\u041A",
+    "GroupName": "18\u041A\u0421\u041A-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u041A\u0421\u041A",
+    "GroupName": "18\u041A\u0421\u041A-2"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u041A\u0421\u041A",
+    "GroupName": "19\u041A\u0421\u041A-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u041A\u0421\u041A",
+    "GroupName": "19\u041A\u0421\u041A-2"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0421\u0410",
+    "GroupName": "19\u0421\u0410-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0421\u0410",
+    "GroupName": "19\u0421\u0410-2"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0421\u0410",
+    "GroupName": "20\u0421\u0410-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0443\u041A\u0421\u041A",
+    "GroupName": "19\u0443\u041A\u0421\u041A-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0443\u041A\u0421\u041A",
+    "GroupName": "20\u0443\u041A\u0421\u041A-1"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0443\u041A\u0421\u041A",
+    "GroupName": "20\u0443\u041A\u0421\u041A-2"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0443\u041A\u0421\u041A",
+    "GroupName": "20\u0443\u041A\u0421\u041A-3"
+  },
+  {
+    "BranchName": "Technical",
+    "DirectionName": "\u0443\u041A\u0421\u041A",
+    "GroupName": "21\u0443\u041A\u0421\u041A-1"
+  }
+]

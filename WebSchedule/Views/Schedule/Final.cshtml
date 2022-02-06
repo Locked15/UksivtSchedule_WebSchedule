@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+@model ScheduleModel;
+@using WebSchedule.Other;
+@using WebSchedule.Schedule.Getter;
+@using WebSchedule.Schedule.ScheduleElements;
+
+<html lang="ru">
+<head>
+	<title>@Model.GroupName — @Model.DayId.GetDayByIndex()</title>
+
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<h1 class="display-4" style="text-align:center">Расписание</h1>
+	<div style="text-align:center; font-family:'Georgia Pro';">
+		<p>
+			В таблице ниже представлено расписание для текущей группы: @Model.GroupName. <br/>
+			Выбранный день: @Model.DayId.GetDayByIndex(). 
+		</p>
+
+		<p>
+			Белые строки таблицы — элементы оригинального расписания. <br/>
+			Синие строки — измененные элементы.
+		</p>
+	</div>
+
+	@{
+		ScheduleApi apiConnector = new(Model.DayId, Model.GroupName);
+		DaySchedule schedule = apiConnector.GetSchedule();
+
+		schedule = schedule.MergeChanges(apiConnector.GetChanges());
+		schedule.Lessons.RemoveAll(lesson => !lesson.CheckHaveValue());
+
+		<table id="ScheduleTable" class="table table-bordered table-hover" style="font-family:'Georgia Pro'; margin-top:5%;">
+			<thead class="thead table-dark">
+				<tr>
+					<th>№</th>
+
+					<th>Название</th>
+
+					<th>Преподаватель</th>
+					<th>Кабинет</th>
+				</tr>
+			</thead>
+
+			<tbody id="ScheduleTableBody">
+				@foreach (Lesson lesson in schedule.Lessons)
+				{
+					<tr style="background-color: @(lesson.LessonChanged ? "rgb(139, 202, 235)" : "white")">
+						<th scope="row">@lesson.Number</th>
+
+						<td>@lesson.Name</td>
+
+						<td>@lesson.Teacher</td>
+						<td>@lesson.Place</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+</body>
+</html>

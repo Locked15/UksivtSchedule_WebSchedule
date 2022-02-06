@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+@model SearchModel;
+
+<html lang="ru">
+<head>
+	<title>Поиск - @Model.Request</title>
+
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<h1 id="SearchHeader" class="display-4" style="text-align:center">Результаты поиска</h1>
+
+	@if (Model.Request.Equals("19П-5"))
+	{
+		<p style="text-align:center; margin-top:25px; font-style:italic;">
+			Requescat In Pace: 19П-5 (2019 — 2022).
+		</p>
+	}
+
+	else if (Model.Request.Equals(String.Empty))
+	{
+		<p style="text-align:center; margin-top:25px;">
+			Задан пустой поисковый запрос.
+		</p>
+	}
+
+	else
+	{
+		foreach (String option in Model.Options)
+		{
+			<p style="text-align:center">
+				<a class="btn btn-outline-primary" style="width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName="@option">@option</a>
+			</p>
+		}
+	}
+</body>
+</html>
