@@ -42,6 +42,8 @@
 
 					<th>Преподаватель</th>
 					<th>Кабинет</th>
+
+					<th>Время</th>
 				</tr>
 			</thead>
 
@@ -55,6 +57,19 @@
 
 						<td>@lesson.Teacher</td>
 						<td>@lesson.Place</td>
+
+						<td>
+							@{
+								String[] times = lesson.Number.GetTime(schedule.Day.GetIndexByDay(), Model.GroupName).Split("\n");
+							}
+
+							@foreach (String time in times)
+							{
+								<p>
+									@time
+								</p>
+							}
+						</td>
 					</tr>
 				}
 			</tbody>
