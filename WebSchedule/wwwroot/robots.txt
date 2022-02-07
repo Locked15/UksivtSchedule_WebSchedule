@@ -1,3 +1,6 @@
 ﻿User-agent: *
 Disallow: /Home/Search
 Disallow: /Schedule/Final
+
+User-agent: Googlebot
+Disallow: /
