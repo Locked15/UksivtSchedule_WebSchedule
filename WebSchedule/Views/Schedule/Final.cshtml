@@ -30,9 +30,18 @@
 		ScheduleApi apiConnector = new(Model.DayId, Model.GroupName);
 		DaySchedule schedule = apiConnector.GetSchedule();
 
-		schedule = schedule.MergeChanges(apiConnector.GetChanges());
+		ChangesOfDay changes = apiConnector.GetChanges();
+		String dateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.ToString("dd.MM.yyyy!") : "[НЕТ ИНФОРМАЦИИ]";
+
+		// Код для обеспечения кое-какой, но все же работоспособности слияния расписания через БД.
+		if (changes.NewLessons.Count > 0)
+		{
+			schedule = schedule.MergeChanges(changes);
+		}
+
 		schedule.Lessons.RemoveAll(lesson => !lesson.CheckHaveValue());
 
+		<h2 class="display-6" style="text-align:center">Расписание на @dateString</h2>
 		<table id="ScheduleTable" class="table table-bordered table-hover" style="font-family:'Georgia Pro'; margin-top:5%;">
 			<thead class="thead table-dark">
 				<tr>
@@ -74,6 +83,17 @@
 				}
 			</tbody>
 		</table>
+
+		// Сделать асинхронное диалоговое окно не получилось...
+		if (changes.NewLessons.Count == 0)
+		{
+			<div class="text-danger" style="text-align:center">
+				<p>
+					ВНИМАНИЕ: Замены не обнаружены. <br/>
+					Выведено оригинальное расписание.
+				</p>
+			</div>
+		}
 	}
 </body>
 </html>
