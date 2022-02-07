@@ -83,19 +83,6 @@ namespace WebSchedule.Controllers
 
         /// <summary>
         /// Событие, срабатывающее при вызове из разметки.
-        /// <br/>
-        /// Переводит пользователя к выбору дня получения расписания для случайной группы.
-        /// </summary>
-        /// <returns>Новая страница выбора дня.</returns>
-        public IActionResult Random()
-        {
-            Int32 ind = new Random().Next(0, HierarchyModel.AllGroups.Count);
-
-            return View("~/Views/Schedule/Day.cshtml", new ScheduleModel(HierarchyModel.AllGroups[ind]));
-        }
-
-        /// <summary>
-        /// Событие, срабатывающее при вызове из разметки.
         /// </summary>
         /// <param name="groupName">Группа, которую хочет найти пользователь.</param>
         /// <returns>Новая страница поиска с результатами.</returns>

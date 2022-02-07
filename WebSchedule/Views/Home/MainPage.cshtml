@@ -17,12 +17,23 @@
 		<h1 class="display-4" style="text-align:center">Поиск</h1>
 		<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">
 			<form>
-				<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:50%; text-align:center;"/>
+				<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:50%; text-align:center;" placeholder="Название группы..." spellcheck/>
 				<br/> <br/>
 
-				<a class="btn btn-outline-primary" asp-controller="Home" asp-action="Random">Случайная группа</a>
-				<button class="btn btn-outline-primary" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>
+				<button class="btn btn-outline-primary" style="width:25%" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>
 			</form>
+		</div>
+
+		<h2 class="display-6" style="text-align:center; margin-top:40px;">Описание</h2>
+		<div style="font-family:'Georgia Pro'; text-align:center;">
+			<p>
+				При поиске будут проанализированы возможные совпадения групп. <br/>
+				Если будет обнаружено всего одно сопадение, Вы сразу перейдете к выбору дня для отображения расписания.
+			</p>
+
+			<p>
+				В ином случае Вы будете перенаправлены на страницу результатов поиска.
+			</p>
 		</div>
 	</div>
 </body>
