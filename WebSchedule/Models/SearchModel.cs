@@ -1,5 +1,8 @@
 ﻿namespace WebSchedule.Models
 {
+    /// <summary>
+    /// Модель поисковой системы и результатов поиска.
+    /// </summary>
     public class SearchModel
     {
         #region Область: Свойства.
