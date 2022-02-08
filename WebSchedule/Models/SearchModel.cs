@@ -21,7 +21,7 @@
         /// <param name="request">Поисковый запрос.</param>
         public SearchModel(String request)
         {
-            Request = request ?? String.Empty;
+            Request = request.Trim(' ') ?? String.Empty;
 
             Options = HierarchyModel.AllGroups.Where(group => group.Contains(Request, StringComparison.OrdinalIgnoreCase)).ToList();
         }
