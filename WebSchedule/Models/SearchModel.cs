@@ -23,7 +23,7 @@
         {
             Request = request ?? String.Empty;
 
-            Options = HierarchyModel.AllGroups.Where(group => group.Contains(Request)).ToList();
+            Options = HierarchyModel.AllGroups.Where(group => group.Contains(Request, StringComparison.OrdinalIgnoreCase)).ToList();
         }
         #endregion
     }
