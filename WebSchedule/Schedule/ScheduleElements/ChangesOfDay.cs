@@ -9,6 +9,14 @@ namespace WebSchedule.Schedule.ScheduleElements
     {
         #region Область: Свойства.
         /// <summary>
+        /// Свойство, отвечающее за то, что элемент с заменами на указанный день найден.
+        /// <br/>
+        /// Это нужно, чтобы можно было выводить разные сообщения, в зависимости от того,
+        /// не найдены ли замены для текущей даты вообще или не найдены только для указанной группы.
+        /// </summary>
+        public Bool ChangesFound { get; set; }
+
+        /// <summary>
         /// Свойство, отвечающее за то, являются ли замены абсолютными.
         /// </summary>
         public Bool AbsoluteChanges { get; set; }
@@ -63,12 +71,30 @@ namespace WebSchedule.Schedule.ScheduleElements
         }
 
         /// <summary>
-        /// Статический конструктор класса.
+        /// Конструктор класса.
         /// </summary>
-        static ChangesOfDay()
+        /// <param name="changesFound">Найден ли элемент с заменами на указанный день.</param>
+        /// <param name="absoluteChanges">Замены на весь день?</param>
+        /// <param name="changesDate">Дата (даже предполагаемая) замен.</param>
+        /// <param name="newLessons">Список с новыми парами.</param>
+		public ChangesOfDay(Bool changesFound, Bool absoluteChanges, DateTime? changesDate, List<Lesson> newLessons)
+		{
+			ChangesFound = changesFound;
+			AbsoluteChanges = absoluteChanges;
+			ChangesDate = changesDate;
+			NewLessons = newLessons;
+		}
+
+		/// <summary>
+		/// Статический конструктор класса.
+		/// </summary>
+		static ChangesOfDay()
         {
-            DefaultChanges = new ChangesOfDay(false, Enumerable.Empty<Lesson>().ToList());
-        }
+			DefaultChanges = new ChangesOfDay(false, Enumerable.Empty<Lesson>().ToList())
+			{
+				ChangesFound = false
+			};
+		}
         #endregion
     }
 }

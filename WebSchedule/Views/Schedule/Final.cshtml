@@ -87,10 +87,45 @@
 		// Сделать асинхронное диалоговое окно не получилось...
 		if (changes.NewLessons.Count == 0)
 		{
+			String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" : 
+			"ВНИМАНИЕ: Файл с заменами для указанной даты не обнаружен!";
+
 			<div class="text-danger" style="text-align:center">
 				<p>
-					ВНИМАНИЕ: Замены не обнаружены. <br/>
+					@firstPartOfMessage <br/>
 					Выведено оригинальное расписание.
+				</p>
+			</div>
+		}
+
+		String declinatedDay, newDateString;
+		Int32 previousDay = Model.DayId - 1;
+		Int32 nextDay = Model.DayId + 1;
+
+		// Атрибут "hidden" работает не на всех браузерах, поэтому пришлось делать так.
+		if (previousDay >= 0)
+		{
+			// Важно: Надо обработать вторник, потому что в его случае будет "перейти кО вторнику".
+			declinatedDay = previousDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
+			newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(-1).ToString("dd.MM.yyyy!") : "[N/A]";
+
+			<div style="text-align:center">
+				<p>
+					<a class="btn btn-outline-dark" style="width:25%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
+					&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
+				</p>
+			</div>
+		}
+
+		if (nextDay < 7)
+		{
+			declinatedDay = nextDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
+			newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(1).ToString("dd.MM.yyyy!") : "[N/A]";
+
+			<div style="text-align:center">
+				<p>
+					<a class="btn btn-outline-dark" style="width:25%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
+					&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
 				</p>
 			</div>
 		}

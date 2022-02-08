@@ -120,6 +120,43 @@ namespace WebSchedule.Other
         }
 
         /// <summary>
+        /// Метод для смены склонения названия дня: <br/>
+        /// Понедельник -> Понедельнику;
+        /// Суббота -> Субботе;
+        /// Воскресенье -> Воскресенью.
+        /// </summary>
+        /// <param name="originalDay">Название дня в оригинальном склонении.</param>
+        /// <returns>Название дня в другом склонении.</returns>
+        public static String ConvertToOtherDeclination(this String originalDay)
+        {
+            originalDay = originalDay.TranslateDay().ToLower();
+
+            switch (originalDay)
+            {
+                case "понедельник":
+                    return "Понедельнику";
+
+                case "вторник":
+                    return "Вторнику";
+
+                case "среда":
+                    return "Среде";
+
+                case "четверг":
+                    return "Четвергу";
+
+                case "пятница":
+                    return "Пятнице";
+
+                case "суббота":
+                    return "Субботе";
+
+                default:
+                    return "Воскресенью";
+            }
+        }
+
+        /// <summary>
         /// Метод для проверки группы на её отношение к первому курсу.
         /// </summary>
         /// <param name="groupName">Название группы, которую нужно проверить.</param>
