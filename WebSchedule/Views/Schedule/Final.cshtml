@@ -111,7 +111,7 @@
 
 			<div style="text-align:center">
 				<p>
-					<a class="btn btn-outline-dark" style="width:25%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
+					<a class="btn btn-outline-dark" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
 					&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
 				</p>
 			</div>
@@ -124,7 +124,7 @@
 
 			<div style="text-align:center">
 				<p>
-					<a class="btn btn-outline-dark" style="width:25%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
+					<a class="btn btn-outline-dark" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
 					&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
 				</p>
 			</div>
