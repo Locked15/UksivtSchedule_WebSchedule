@@ -204,7 +204,7 @@ namespace WebSchedule.Other
         public static String GetTime(this Int32 number, Int32 dayInd, String groupName)
         {
             // Обычные дни.
-            if (dayInd != 6)
+            if (dayInd != 5)
             {
                 switch (number)
                 {
