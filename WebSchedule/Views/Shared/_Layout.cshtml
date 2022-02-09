@@ -1,10 +1,13 @@
 ﻿<!DOCTYPE html>
 
+@using WebSchedule.Other;
+@using WebSchedule.Schedule.Getter;
+
 <html lang="ru">
 <head>
 	<meta charset="utf-8" />
-	<meta name="robots" content="follow"/>
-	<meta name="description" content="Сайт расписания УКСИВТа, позволяющий получать актуальные данные о заменах, и основном расписании для любой группы колледжа."/>
+	<meta name="robots" content="follow" />
+	<meta name="description" content="Сайт расписания УКСИВТа, позволяющий получать актуальные данные о заменах, и основном расписании для любой группы колледжа." />
 	<meta name="keywords" content="Расписание, Schedule, УКСИВТ, UKSIVT, Замены, Changes, Replacements, ASP.NET, ASP.NET Core, Web Schedule" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -22,7 +25,7 @@
 		/**
 		 * Функция, вставляющая цифру 0 перед значениями меньше 10.
 		 */
-		function insertZero(value) 
+		function insertZero(value)
 		{
 			if (value < 10)
 			{
@@ -35,7 +38,7 @@
 		/**
 		 * Функция для вставки даты и времени на страницу.
 		 */
-		function insertDateTime() 
+		function insertDateTime()
 		{
 				var allDate = new Date();
 				var day = insertZero(allDate.getDate());
@@ -63,10 +66,10 @@
 		/**
 		 * Событие, происходящее при загрузке страницы.
 		 * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
-		 * 
+		 *
 		 * Также устанавливает отступ от нижней границы ("футера").
 		 */
-		function onLoad() 
+		function onLoad()
 		{
 			insertDateTime();
 
@@ -79,39 +82,48 @@
 	</script>
 </head>
 
-<body>
+<body style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
 			<div class="container-fluid">
-				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage">Расписание УКСИВТ</a>
+				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Расписание УКСИВТ</a>
 
 				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
 					<!-- Левая часть. -->
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<!-- Информация. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link text-dark" asp-controller="Home" asp-action="Info">Информация</a>
+							<a class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Информация</a>
+						</li>
+
+						<!-- Соглашение. -->
+						<li class="nav-item" style="font-family:'Georgia Pro'">
+							<a class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Соглашение</a>
 						</li>
 
 						<!-- Настройки. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link text-dark" asp-controller="Home" asp-action="Settings">Настройки</a>
+							<a class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Настройки</a>
 						</li>
 
 						<!-- Дополнительные ссылки. -->
 						<li class="nav-item dropdown">
-							<a id="links" class="nav-link text-dark dropdown-toggle" style="font-family:'Georgia Pro'" role="button" 
+							<a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black")" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false" href="#">Ссылки</a>
 
-							<div class="dropdown-menu submenu" aria-labelledby="links">
+							<div class="dropdown-menu submenu" style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black");
+							border:solid; border-color: @(Extensions.UseDarkTheme ? "white" : "black")" aria-labelledby="links">
 								<!-- Официальный сайт. -->
-								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
+								<a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
+								text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
 
 								<!-- Группа в ВК. -->
-								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
+								<a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black"); 
+								text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
 
 								<!-- Группа в Instagram. -->
-								<a class="nav-link text-dark" target="_blank" style="font-family:'Georgia Pro'; text-align:center;" href="https://www.instagram.com/uksivt_day/">Группа Instagram</a>
+								<a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black"); 
+								text-align:center;" href="https://www.instagram.com/uksivt_day/">Группа Instagram</a>
 							</div>
 						</li>
 					</ul>
@@ -132,6 +144,9 @@
 	<div id="MainBlock" class="container content">
 		<main role="main" class="pb-3">
 			@RenderBody()
+
+			<!-- Предупреждение о куках. -->
+			<script src="~/js/smart-cookies.js"></script>
 		</main>
 	</div>
 

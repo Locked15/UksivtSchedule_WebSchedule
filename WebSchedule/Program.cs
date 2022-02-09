@@ -30,3 +30,6 @@ app.MapControllerRoute(
     pattern: "{controller=Schedule}/{action=Day}/{id?}");
 
 app.Run();
+
+// TODO: —делать сохранение настроек между сесси€ми пользовател€.
+// TODO: ƒобавить темную тему.

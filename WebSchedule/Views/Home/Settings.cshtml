@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 
+@using WebSchedule.Other;
 @using WebSchedule.Schedule.Getter;
 
 <html  lang="ru">
@@ -9,10 +10,10 @@
 	<meta charset="utf-8" />
 </head>
 
-<body>
+<body style="background-color: @(Extensions.UseDarkTheme ? "black" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
 	<main class="accordion-body">
 		<h1 class="display-3" style="text-align:center">Настройки</h1>
-		<div class="text-dark" style="font-family:'Georgia Pro'">
+		<div style="font-family:'Georgia Pro'">
 			<p>
 				На данной странице можно настроить опции выбора расписания. <br />
 				Перед тем как перейти к самой настройке, стоит узнать, за что отвечают атрибуты.
@@ -20,7 +21,7 @@
 		</div>
 
 		<h2>Использовать Базу Данных как источник</h2>
-		<div class="text-dark" style="font-family:'Georgia Pro'">
+		<div style="font-family:'Georgia Pro'">
 			<p>
 				API, используемая данной страницей способна получать расписание двумя путями:
 			</p>
@@ -38,7 +39,7 @@
 		</div>
 
 		<h2>Выбирать небезопасные значения</h2>
-		<div class="text-dark" style="font-family:'Georgia Pro'">
+		<div style="font-family:'Georgia Pro'">
 			<p>
 				В случае, если пользователь выбирает в качестве источника базу данных, то проявляется одна небольшая проблема.<br />
 				Оригинальное расписание было оформлено не единообразно. Это значит, что какие-то значения могли быть искажены при импортировании.
@@ -63,20 +64,31 @@
 			</ul>
 		</div>
 
+		<h2>Использовать тёмную тему</h2>
+		<div style="font-family:'Georgia Pro'">
+			<p>
+				После сохранения настроек тема сайта будет изменена на тёмную или обратно.
+			</p>
+		</div>
+
 		<h2 class="display-6" style="text-align:center">Настройка</h2>
-		<div class="text-dark" style="font-family:'Georgia Pro'; text-align:center;">
+		<div style="font-family:'Georgia Pro'; text-align:center;">
 			Чтобы включить ту или иную опцию, отметьте её. <br />
 			Когда настройка будет завершена, нажмите на кнопку, чтобы сохранить настройки.
 		</div>
 
 		<div style="text-align:center;">
 			<form>
-				<label class="text-dark" for="db" style="font-family:'Georgia Pro'; font-style:italic;">Использовать Базу Данных как источник? </label>
+				<label for="db" style="font-family:'Georgia Pro'; font-style:italic;">Использовать Базу Данных как источник? </label>
 				<input id="db" type="checkbox" name="useDb" checked=@ScheduleApi.UseDataBase />
 				<br /><br />
 
-				<label class="text-dark" for="select" style="font-family:'Georgia Pro'; font-style:italic;">Выбирать 'небезопасные' значения? </label>
+				<label for="select" style="font-family:'Georgia Pro'; font-style:italic;">Выбирать 'небезопасные' значения? </label>
 				<input id="select" type="checkbox" name="selectUnsecure" checked=@ScheduleApi.SelectUnsecure />
+				<br /><br />
+
+				<label for="darkTheme" style="font-family:'Georgia Pro'; font-style:italic;">Использовать тёмную тему? </label>
+				<input id="darkTheme" type="checkbox" name="darkTheme" checked=@Extensions.UseDarkTheme />
 				<br /><br />
 
 				<button type="submit" formmethod="post" asp-controller="Home" asp-action="SaveSettings" class="btn btn-secondary">Сохранить</button>

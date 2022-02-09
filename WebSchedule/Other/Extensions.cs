@@ -8,6 +8,18 @@ namespace WebSchedule.Other
     public static class Extensions
     {
         /// <summary>
+        /// Статическое свойство, отвечающее за использование темной темы.
+        /// </summary>
+        public static Bool UseDarkTheme { get; set; } = false;
+
+        /// <summary>
+        /// Статическое свойство, содержащее значение, отвечающее за прочтенность куков.
+        /// <br/>
+        /// Нужно, чтобы куки считывались только в самом начале работы сайта.
+        /// </summary>
+        public static Bool CookiesReaded { get; set; } = false;
+
+        /// <summary>
         /// Метод расширения, позволяющий получить день по указанному индексу.
         /// </summary>
         /// <param name="index">Индекс дня (0 : 6).</param>

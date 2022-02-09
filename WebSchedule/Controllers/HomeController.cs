@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using WebSchedule.Other;
 using WebSchedule.Models;
 using WebSchedule.Schedule.Getter;
 
@@ -59,6 +60,15 @@ namespace WebSchedule.Controllers
         /// <summary>
         /// Событие, срабатывающее при вызове из разметки.
         /// </summary>
+        /// <returns>Страница с соглашением.</returns>
+        public IActionResult Privacy()
+        {
+            return View("Privacy");
+        }
+
+        /// <summary>
+        /// Событие, срабатывающее при вызове из разметки.
+        /// </summary>
         /// <returns>Новая страница.</returns>
         public IActionResult Settings()
         {
@@ -73,10 +83,33 @@ namespace WebSchedule.Controllers
         /// <param name="useDb">Использовать базу данных для получения значений?</param>
         /// <param name="selectUnsecure">Выбирать небезопасные значения?</param>
         /// <returns>Главная страница.</returns>
-        public IActionResult SaveSettings(String useDb, String selectUnsecure)
+        public IActionResult SaveSettings(String useDb, String selectUnsecure, String darkTheme)
         {
+            IRequestCookieCollection? cookies = HttpContext.Request.Cookies;
             ScheduleApi.UseDataBase = useDb == "on";
             ScheduleApi.SelectUnsecure = selectUnsecure == "on";
+            Extensions.UseDarkTheme = darkTheme == "on";
+
+            #region Подобласть: Удаление повторяющихся куков.
+            if (cookies.ContainsKey("UseDataBase"))
+            {
+                HttpContext.Response.Cookies.Delete("UseDataBase");
+            }
+
+            if (cookies.ContainsKey("SelectUnsecure"))
+            {
+                HttpContext.Response.Cookies.Delete("SelectUnsecure");
+            }
+
+            if (cookies.ContainsKey("UseDarkTheme"))
+            {
+                HttpContext.Response.Cookies.Delete("UseDarkTheme");
+            }
+            #endregion
+
+            HttpContext.Response.Cookies.Append("UseDataBase", useDb ?? "false");
+            HttpContext.Response.Cookies.Append("SelectUnsecure", selectUnsecure ?? "false");
+            HttpContext.Response.Cookies.Append("UseDarkTheme", darkTheme ?? "false");
 
             return View("MainPage");
         }

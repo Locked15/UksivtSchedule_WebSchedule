@@ -21,8 +21,12 @@
 		</p>
 
 		<p>
-			Белые строки таблицы — элементы оригинального расписания. <br/>
-			Синие строки — измененные элементы.
+			@{
+				String firstPart = (Extensions.UseDarkTheme ? "Тёмные строки" : "Белые строки") + " таблицы — элементы оригинального расписания.";
+				String secondPart = (Extensions.UseDarkTheme ? "Белые строки" : "Тёмные строки") + " таблицы — элементы замен.";
+
+				@firstPart<br/>@secondPart
+			}
 		</p>
 	</div>
 
@@ -42,7 +46,7 @@
 		schedule.Lessons.RemoveAll(lesson => !lesson.CheckHaveValue());
 
 		<h2 class="display-6" style="text-align:center">Расписание на @dateString</h2>
-		<table id="ScheduleTable" class="table table-bordered table-hover" style="font-family:'Georgia Pro'; margin-top:5%;">
+		<table id="ScheduleTable" class="table table-bordered table-hover" style="font-family:'Georgia Pro'; margin-top:1%;">
 			<thead class="thead table-dark">
 				<tr>
 					<th>№</th>
@@ -59,15 +63,22 @@
 			<tbody id="ScheduleTableBody">
 				@foreach (Lesson lesson in schedule.Lessons)
 				{
-					<tr style="background-color: @(lesson.LessonChanged ? "rgb(139, 202, 235)" : "white")">
-						<th scope="row">@lesson.Number</th>
+					String color = String.Empty;
 
-						<td>@lesson.Name</td>
+					if (lesson.LessonChanged)
+					{
+						color = Extensions.UseDarkTheme ? "table-light" : "table-dark";
+					}
 
-						<td>@lesson.Teacher</td>
-						<td>@lesson.Place</td>
+					<tr class="@(Extensions.UseDarkTheme ? "table-dark" : "table-light")">
+						<th scope="row" class=@color>@lesson.Number</th>
 
-						<td>
+						<td class=@color>@lesson.Name</td>
+
+						<td class=@color>@lesson.Teacher</td>
+						<td class=@color>@lesson.Place</td>
+
+						<td class=@color>
 							@{
 								String[] times = lesson.Number.GetTime(schedule.Day.GetIndexByDay(), Model.GroupName).Split("\n");
 							}
@@ -111,7 +122,7 @@
 
 			<div style="text-align:center">
 				<p>
-					<a class="btn btn-outline-dark" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
+					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
 					&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
 				</p>
 			</div>
@@ -124,7 +135,7 @@
 
 			<div style="text-align:center">
 				<p>
-					<a class="btn btn-outline-dark" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
+					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
 					&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
 				</p>
 			</div>
