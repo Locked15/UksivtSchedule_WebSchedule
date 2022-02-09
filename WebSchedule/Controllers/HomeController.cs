@@ -107,9 +107,9 @@ namespace WebSchedule.Controllers
             }
             #endregion
 
-            HttpContext.Response.Cookies.Append("UseDataBase", useDb ?? "false");
-            HttpContext.Response.Cookies.Append("SelectUnsecure", selectUnsecure ?? "false");
-            HttpContext.Response.Cookies.Append("UseDarkTheme", darkTheme ?? "false");
+            HttpContext.Response.Cookies.Append("UseDataBase", useDb ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+            HttpContext.Response.Cookies.Append("SelectUnsecure", selectUnsecure ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+            HttpContext.Response.Cookies.Append("UseDarkTheme", darkTheme ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
 
             return View("MainPage");
         }
