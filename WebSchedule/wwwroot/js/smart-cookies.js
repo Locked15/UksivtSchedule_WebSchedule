@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function setCookie(name, value, options = {}) {
 		options = {
 			path: "/",
-			// при необходимости добавьте другие значения по умолчанию
+			expires: new Date(Date.now() + 86400e3 * 64).toUTCString(),
 			...options,
 		};
 
@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (options) {
 			let sc_widget = document.createElement("div");
 			let sc_widget_text = document.createElement("div");
-			let sc_widget_img = document.createElement("img");
 			let sc_agree_button = document.createElement("button");
 			let sc_agree_text = document.createTextNode(options.textButton);
 
