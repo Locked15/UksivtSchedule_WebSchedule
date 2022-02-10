@@ -86,24 +86,28 @@
 	<header>
 		<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
 			<div class="container-fluid">
-				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Расписание УКСИВТ</a>
+				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")" 
+				title="Главная страница">Расписание УКСИВТ</a>
 
 				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
 					<!-- Левая часть. -->
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<!-- Информация. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Информация</a>
+							<a class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+							title="Информация о сайте">Информация</a>
 						</li>
 
 						<!-- Соглашение. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Соглашение</a>
+							<a class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+							title="Пользовательское соглашение">Соглашение</a>
 						</li>
 
 						<!-- Настройки. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")">Настройки</a>
+							<a class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+							title="Настройки сайта">Настройки</a>
 						</li>
 
 						<!-- Дополнительные ссылки. -->
@@ -132,8 +136,8 @@
 					<ul class="navbar-nav">
 						<!-- Вывод времени. -->
 						<li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
-							<div id="CurrentTime"> </div>
-							<div id="CurrentDate"> </div>
+							<div id="CurrentTime" title="Текущее время"> </div>
+							<div id="CurrentDate" title="Текущая дата"> </div>
 						</li>
 					</ul>
 				</div>
