@@ -49,7 +49,7 @@
 	<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">
 		<form>
 			<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:75%;  background-color: @(Extensions.UseDarkTheme ? "rgb(49,69,89)" : "white");
-			text-align:center;" placeholder="Название группы..." value="@Model.Request"/>
+			text-align:center; color: @(Extensions.UseDarkTheme ? "white" : "black"); font-style: italic;" placeholder="Название группы..." value="@Model.Request"/>
 			<br/> <br/>
 
 		<button class="btn btn-outline-primary" style="width:25%" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>
