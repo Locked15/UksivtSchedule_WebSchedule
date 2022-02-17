@@ -49,8 +49,8 @@
 	<h1 class="display-4" style="text-align:center">Расписание</h1>
 	<div style="text-align:center; font-family:'Georgia Pro';">
 		<p>
-			В таблице ниже представлено расписание для текущей группы: @Model.GroupName. <br/>
-			Выбранный день: @Model.DayId.GetDayByIndex(). 
+			В таблице ниже представлено расписание для текущей группы: @Model.GroupName. <br />
+			Выбранный день: @Model.DayId.GetDayByIndex().
 		</p>
 
 		<p>
@@ -58,7 +58,11 @@
 				String firstPart = (Extensions.UseDarkTheme ? "Тёмные строки" : "Белые строки") + " таблицы — элементы оригинального расписания.";
 				String secondPart = (Extensions.UseDarkTheme ? "Белые строки" : "Тёмные строки") + " таблицы — элементы замен.";
 
-				@firstPart<br/>@secondPart
+				@firstPart
+
+				<br />
+
+				@secondPart
 			}
 		</p>
 	</div>
@@ -131,12 +135,12 @@
 		// Сделать асинхронное диалоговое окно не получилось...
 		if (changes.NewLessons.Count == 0)
 		{
-			String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" : 
+			String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" :
 			"ВНИМАНИЕ: Файл с заменами для указанной даты не обнаружен!";
 
 			<div class="text-danger" style="text-align:center">
 				<p>
-					@firstPartOfMessage <br/>
+					@firstPartOfMessage <br />
 					Выведено оригинальное расписание.
 				</p>
 			</div>
@@ -156,10 +160,19 @@
 			<div style="text-align:center">
 				<p>
 					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
-					&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
+						&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9668;
+					</a>
 				</p>
 			</div>
 		}
+
+		<div style="text-align:center">
+			<p>
+				<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName=@Model.GroupName>
+					&#9674; Вернуться к выбору дня &#9674;
+				</a>
+			</p>
+		</div>
 
 		if (nextDay < 7)
 		{
@@ -169,7 +182,8 @@
 			<div style="text-align:center">
 				<p>
 					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
-					&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString)</a>
+						&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9658;
+					</a>
 				</p>
 			</div>
 		}

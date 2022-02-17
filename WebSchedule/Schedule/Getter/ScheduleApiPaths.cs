@@ -82,7 +82,7 @@
         static ScheduleApiPaths()
         {
             #region Область: Инициализация базовых значений.
-            BaseUrl = "http://uksivtscheduleapi.azurewebsites.net/";
+            BaseUrl = "http://uksivtscheduleapi.azurewebsites.net";
 
             PathToDay = "/api/day/";
             #endregion

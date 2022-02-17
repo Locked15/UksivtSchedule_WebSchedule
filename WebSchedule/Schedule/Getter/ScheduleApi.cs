@@ -156,7 +156,7 @@ ScheduleApiPaths.GroupSelector, GroupName)).Result;
         /// <exception cref="HttpRequestException"></exception>
         public ChangesOfDay GetChanges()
         {
-            HttpClient client = new HttpClient()
+            HttpClient client = new()
             {
                 BaseAddress = new Uri(String.Format("{0}{1}{2}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.PathToDay, ScheduleApiPaths.ChangesController))
             };
