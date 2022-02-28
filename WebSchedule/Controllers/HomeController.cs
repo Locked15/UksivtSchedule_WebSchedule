@@ -31,10 +31,10 @@ namespace WebSchedule.Controllers
         /// <param name="environment">Объект, содержащий данные об окружении, где развернут сайт.</param>
         public HomeController(ILogger<HomeController> logger, IHostEnvironment environment)
         {
+            Task.Run(() => HierarchyModel.InitializeAllGroups(environment.ContentRootPath));
+
             this.logger = logger;
             env = environment;
-
-            HierarchyModel.InitializeAllGroups(environment.ContentRootPath);
         }
         #endregion
 

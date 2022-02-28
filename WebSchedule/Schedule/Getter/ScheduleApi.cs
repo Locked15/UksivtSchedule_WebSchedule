@@ -184,7 +184,7 @@ ScheduleApiPaths.GroupSelector, GroupName)).Result;
         {
             HttpClient client = new HttpClient()
             {
-                BaseAddress = new Uri(String.Format("{0}{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.FolderController))
+                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.FolderController))
             };
 
             HttpResponseMessage message = client.GetAsync(client.BaseAddress).Result;
@@ -210,7 +210,7 @@ ScheduleApiPaths.GroupSelector, GroupName)).Result;
         {
             HttpClient client = new HttpClient()
             {
-                BaseAddress = new Uri(String.Format("{0}{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.SubFolderController))
+                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.SubFolderController))
             };
 
             HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}", ScheduleApiPaths.FolderSelector, folder)).Result;
@@ -237,7 +237,7 @@ ScheduleApiPaths.GroupSelector, GroupName)).Result;
         {
             HttpClient client = new HttpClient()
             {
-                BaseAddress = new Uri(String.Format("{0}{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.GroupsController))
+                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.GroupsController))
             };
 
             HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}&{2}{3}", ScheduleApiPaths.FolderSelector, 
