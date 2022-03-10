@@ -8,18 +8,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseExceptionHandler("/Home/Error");
 
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
@@ -30,6 +27,3 @@ app.MapControllerRoute(
     pattern: "{controller=Schedule}/{action=Day}/{id?}");
 
 app.Run();
-
-// TODO: —делать сохранение настроек между сесси€ми пользовател€.
-// TODO: ƒобавить темную тему.

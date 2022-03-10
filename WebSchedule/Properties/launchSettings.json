@@ -14,16 +14,14 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7001;http://localhost:5001",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-        // НЕЛЬЗЯ МЕНЯТЬ -> СТИЛИ ЛОМАЮТСЯ.
+        "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-          // НЕЛЬЗЯ МЕНЯТЬ -> СТИЛИ ЛОМАЮТСЯ.
+        "ASPNETCORE_ENVIRONMENT": "Production"
       }
     }
   }
