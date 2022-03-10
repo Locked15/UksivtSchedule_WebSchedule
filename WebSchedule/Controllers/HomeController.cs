@@ -32,6 +32,7 @@ namespace WebSchedule.Controllers
         public HomeController(ILogger<HomeController> logger, IHostEnvironment environment)
         {
             Task.Run(() => HierarchyModel.InitializeAllGroups(environment.ContentRootPath));
+            Task.Run(() => new ScheduleApi(DateTime.Now.DayOfWeek.ToString().GetIndexByDay(), "19П-3").GetChanges());
 
             this.logger = logger;
             env = environment;
