@@ -246,15 +246,15 @@ namespace WebSchedule.Other
                         return "13:35 — 14:20\n14:25 — 15:10";
 
                     case 4:
-                        return dayInd == 2 ? 
+                        return dayInd == 2 ?
                         "16:10 — 17:30" : "15:20 — 16:50";
 
                     case 5:
-                        return dayInd == 2 ? 
+                        return dayInd == 2 ?
                         "17:40 — 18:50" : "17:00 — 18:20";
 
                     default:
-                        return dayInd == 2 ? 
+                        return dayInd == 2 ?
                         "19:00 — 20:10" : "18:30 — 19:50";
 
                 }

@@ -54,9 +54,9 @@ namespace WebSchedule.Schedule.ScheduleElements
                 new(0),
                 new(1),
                 new(2),
-                new(3), 
+                new(3),
                 new(4),
-                new(5), 
+                new(5),
                 new(6)
             });
         }
@@ -98,7 +98,7 @@ namespace WebSchedule.Schedule.ScheduleElements
             {
                 Int32 lessonIndex = change.Number;
 
-                if (change.Name.ToLower().Equals("нет"))
+                if (change.Name != null && change.Name.ToLower().Equals("нет"))
                 {
                     change.Name = null;
                 }

@@ -94,9 +94,7 @@ namespace WebSchedule.Schedule.ScheduleElements
         {
             return Name != null;
         }
-        #endregion
 
-        #region Область: Методы.
         /// <summary>
         /// Метод для сравнения двух объектов.
         /// </summary>
