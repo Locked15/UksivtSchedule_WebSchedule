@@ -5,165 +5,175 @@
 
 <html lang="ru">
 <head>
-	<meta charset="utf-8" />
-	<meta name="robots" content="follow" />
-	<meta name="description" content="Сайт расписания УКСИВТа, позволяющий получать актуальные данные о заменах, и основном расписании для любой группы колледжа." />
-	<meta name="keywords" content="Расписание, Schedule, УКСИВТ, UKSIVT, Замены, Changes, Replacements, ASP.NET, ASP.NET Core, Web Schedule" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="robots" content="follow" />
+    <meta name="description" content="Сайт расписания УКСИВТа, позволяющий получать актуальные данные о заменах, и основном расписании для любой группы колледжа." />
+    <meta name="keywords" content="Расписание, Schedule, УКСИВТ, UKSIVT, Замены, Changes, Replacements, ASP.NET, ASP.NET Core, Web Schedule" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	@await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
 
-	<script type="text/javascript">
-		/**
-		 * Функция, вставляющая цифру 0 перед значениями меньше 10.
-		 */
-		function insertZero(value)
-		{
-			if (value < 10)
-			{
-				value = '0' + value;
-			}
+    <style>
+        a#hoverableLink:hover {
+            font-size: 125%;
+            padding-bottom: 3px;
+            padding-left: 2px;
+            padding-right: 2px;
+            border-bottom: 2px solid;
+        }
+    </style>
 
-			return value;
-		}
+    <script type="text/javascript">
+        /**
+         * Функция, вставляющая цифру 0 перед значениями меньше 10.
+         */
+        function insertZero(value)
+        {
+            if (value < 10)
+            {
+                value = '0' + value;
+            }
 
-		/**
-		 * Функция для вставки даты и времени на страницу.
-		 */
-		function insertDateTime()
-		{
-				var allDate = new Date();
-				var day = insertZero(allDate.getDate());
-				var month = insertZero(allDate.getMonth() + 1);
-				var year = allDate.getFullYear();
-				var hour = insertZero(allDate.getHours());
-				var minute = insertZero(allDate.getMinutes());
+            return value;
+        }
 
-				document.getElementById("CurrentTime").innerHTML = hour + ':' + minute;
-				document.getElementById("CurrentDate").innerHTML = day + '.' + month + '.' + year + '!';
-		}
+        /**
+         * Функция для вставки даты и времени на страницу.
+         */
+        function insertDateTime()
+        {
+                var allDate = new Date();
+                var day = insertZero(allDate.getDate());
+                var month = insertZero(allDate.getMonth() + 1);
+                var year = allDate.getFullYear();
+                var hour = insertZero(allDate.getHours());
+                var minute = insertZero(allDate.getMinutes());
 
-		/**
-		 * Функция для вставки отстутпа от "футера" страницы, чтобы контент не попадал за него.
-		 */
-		function insertMargin()
-		{
-			var main = document.getElementById("Divider");
-			var footer = document.getElementById("FooterBlock");
+                document.getElementById("CurrentTime").innerHTML = hour + ':' + minute;
+                document.getElementById("CurrentDate").innerHTML = day + '.' + month + '.' + year + '!';
+        }
 
-			// Чтобы футер не подходил очень близко к контенту, увеличиваем отступ.
-			main.style.marginTop = footer.clientHeight + 50 + 'px';
-		}
+        /**
+         * Функция для вставки отстутпа от "футера" страницы, чтобы контент не попадал за него.
+         */
+        function insertMargin()
+        {
+            var main = document.getElementById("Divider");
+            var footer = document.getElementById("FooterBlock");
 
-		/**
-		 * Событие, происходящее при загрузке страницы.
-		 * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
-		 *
-		 * Также устанавливает отступ от нижней границы ("футера").
-		 */
-		function onLoad()
-		{
-			insertDateTime();
+            // Чтобы футер не подходил очень близко к контенту, увеличиваем отступ.
+            main.style.marginTop = footer.clientHeight + 50 + 'px';
+        }
 
-			setInterval(insertDateTime, 60000);
-		}
+        /**
+         * Событие, происходящее при загрузке страницы.
+         * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
+         *
+         * Также устанавливает отступ от нижней границы ("футера").
+         */
+        function onLoad()
+        {
+            insertDateTime();
 
-		window.addEventListener('load', onLoad);
-		window.addEventListener('load', insertMargin);
-		window.addEventListener('resize', insertMargin);
-	</script>
+            setInterval(insertDateTime, 60000);
+        }
+
+        window.addEventListener('load', onLoad);
+        window.addEventListener('load', insertMargin);
+        window.addEventListener('resize', insertMargin);
+    </script>
 </head>
 
 <body style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
-	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
-			<div class="container-fluid">
-				<a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")" 
-				title="Главная страница">Расписание УКСИВТ</a>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                   title="Главная страница">Расписание УКСИВТ</a>
 
-				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
-					<!-- Левая часть. -->
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<!-- Информация. -->
-						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
-							title="Информация о сайте">Информация</a>
-						</li>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
+                    <!-- Левая часть. -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <!-- Информация. -->
+                        <li class="nav-item" style="font-family:'Georgia Pro'">
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                               title="Информация о сайте">Информация</a>
+                        </li>
 
-						<!-- Соглашение. -->
-						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
-							title="Пользовательское соглашение">Соглашение</a>
-						</li>
+                        <!-- Соглашение. -->
+                        <li class="nav-item" style="font-family:'Georgia Pro'">
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                               title="Пользовательское соглашение">Соглашение</a>
+                        </li>
 
-						<!-- Настройки. -->
-						<li class="nav-item" style="font-family:'Georgia Pro'">
-							<a class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
-							title="Настройки сайта">Настройки</a>
-						</li>
+                        <!-- Настройки. -->
+                        <li class="nav-item" style="font-family:'Georgia Pro'">
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                               title="Настройки сайта">Настройки</a>
+                        </li>
 
-						<!-- Дополнительные ссылки. -->
-						<li class="nav-item dropdown">
-							<a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black")" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false" href="#">Ссылки</a>
+                        <!-- Дополнительные ссылки. -->
+                        <li class="nav-item dropdown">
+                            <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black")" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false" href="#">Ссылки</a>
 
-							<div class="dropdown-menu submenu" style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black");
+                            <div class="dropdown-menu submenu" style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black");
 							border:solid; border-color: @(Extensions.UseDarkTheme ? "white" : "black")" aria-labelledby="links">
-								<!-- Официальный сайт. -->
-								<a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
+                                <!-- Официальный сайт. -->
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
 								text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
 
-								<!-- Группа в ВК. -->
-								<a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black"); 
+                                <!-- Группа в ВК. -->
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
 								text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
-							</div>
-						</li>
-					</ul>
+                            </div>
+                        </li>
+                    </ul>
 
-					<!-- Правая часть. -->
-					<ul class="navbar-nav">
-						<!-- Вывод времени. -->
-						<li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
-							<div id="CurrentTime" title="Текущее время"> </div>
-							<div id="CurrentDate" title="Текущая дата"> </div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
+                    <!-- Правая часть. -->
+                    <ul class="navbar-nav">
+                        <!-- Вывод времени. -->
+                        <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
+                            <div id="CurrentTime" title="Текущее время"> </div>
+                            <div id="CurrentDate" title="Текущая дата"> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-	<div id="MainBlock" class="container content">
-		<main role="main" class="pb-3">
-			@RenderBody()
+    <div id="MainBlock" class="container content">
+        <main role="main" class="pb-3">
+            @RenderBody()
 
-			<!-- Предупреждение о куках. -->
-			<script src="~/js/smart-cookies.js"></script>
-		</main>
-	</div>
+            <!-- Предупреждение о куках. -->
+            <script src="~/js/smart-cookies.js"></script>
+        </main>
+    </div>
 
-	<!-- Отступ для футера со значениями по умолчанию. -->
-	<p id="Divider" style="margin-top:15%"></p>
+    <!-- Отступ для футера со значениями по умолчанию. -->
+    <p id="Divider" style="margin-top:15%"></p>
 
-	<footer id="FooterBlock" class="border-top footer text-muted">
-		<div class="container">
-			<div class="float-lg-start" style="display:inline-block">
-				Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET</a>.<br />
-				2021 — 2022.
-			</div>
+    <footer id="FooterBlock" class="border-top footer text-muted">
+        <div class="container">
+            <div class="float-lg-start" style="display:inline-block">
+                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET</a>.<br />
+                2021 — 2022.
+            </div>
 
-			<div class="float-lg-end" style="display:inline-block">
-				<p>Создано: <a href="https://github.com/Locked15" style="font-style:italic;">Locked15</a>.</p>
-			</div>
-		</div>
-	</footer>
+            <div class="float-lg-end" style="display:inline-block">
+                <p>Создано: <a href="https://github.com/Locked15" style="font-style:italic;">Locked15</a>.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

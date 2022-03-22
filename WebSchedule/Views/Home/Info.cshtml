@@ -5,82 +5,99 @@
 
 <html lang="ru">
 <head>
-	<title>Информация</title>
+    <title>Информация</title>
 
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
+
+    <style>
+        a#infoLink:hover {
+            background-size: 100% 2px;
+            font-size: 200%;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
-	<!-- Считываем куки. -->
-	@{
-		if (!Extensions.CookiesReaded)
-		{
-			try
-			{
-				IRequestCookieCollection? cookies = Context.Request.Cookies;
+    <!-- Считываем куки. -->
+    @{
+        if (!Extensions.CookiesReaded)
+        {
+            try
+            {
+                IRequestCookieCollection? cookies = Context.Request.Cookies;
 
-				if (cookies.ContainsKey("UseDataBase"))
-				{
-					ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
-				}
+                if (cookies.ContainsKey("UseDataBase"))
+                {
+                    ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
+                }
 
-				if (cookies.ContainsKey("SelectUnsecure"))
-				{
-					ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
-				}
+                if (cookies.ContainsKey("SelectUnsecure"))
+                {
+                    ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
+                }
 
-				if (cookies.ContainsKey("UseDarkTheme"))
-				{
-					Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
-				}
-			}
+                if (cookies.ContainsKey("UseDarkTheme"))
+                {
+                    Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
+                }
+            }
 
-			catch (NullReferenceException)
-			{
+            catch (NullReferenceException)
+            {
 
-			}
+            }
 
-			Extensions.CookiesReaded = true;
-		}
-	}
+            Extensions.CookiesReaded = true;
+        }
+    }
 
-	<main>
-		<h1 class="display-4" style="text-align:center">Информация о сайте</h1>
+    <main>
+        <h1 class="display-4" style="text-align:center">Информация о сайте</h1>
 
-		<h2 class="display-6" style="text-align:center">Общие сведения</h2>
-		<div style="font-family:'Georgia Pro'">
-			<p>
-				Данный сайт предоставляет возможность оперативно и легко узнавать информацию о заменах УКСИВТа.<br />
-				<i>В отличие от обычного способа просмотра сайта на предмет замен, здесь Вы сразу увидите итоговое расписание.</i>
-			</p>
+        <h2 class="display-6" style="text-align:center">Общие сведения</h2>
+        <div style="font-family:'Georgia Pro'">
+            <p>
+                Данный сайт предоставляет возможность оперативно и легко узнавать информацию о заменах УКСИВТа.<br />
+                <i>В отличие от обычного способа просмотра сайта на предмет замен, здесь Вы сразу увидите итоговое расписание.</i>
+            </p>
 
-			<p>
-				Для работы данный сайт использует общедоступный API расписания, позволяющий получать как оригинальное расписание, так и замены для него.
-			</p>
-		</div>
+            <p>
+                Для работы данный сайт использует общедоступный API расписания, позволяющий получать как оригинальное расписание, так и замены для него.
+            </p>
+        </div>
 
-		<h2 class="display-6" style="text-align:center">Предупреждение</h2>
-		<div style="font-family:'Georgia Pro'">
-			<p>
-				Полученное расписание может быть ошибочным. Для получения достоверного результата рекомендуется посетить интересующую Вас страницу несколько раз.<br />
-				<i>Кроме того, на официальном сайте замены обычно размещаются с задержкой. Это также следует учитывать при использовании данного сайта.</i>
-			</p>
-		</div>
+        <h2 class="display-6" style="text-align:center">Предупреждение</h2>
+        <div style="font-family:'Georgia Pro'">
+            <p>
+                Полученное расписание может быть ошибочным. Для получения достоверного результата рекомендуется посетить интересующую Вас страницу несколько раз.<br />
+                <i>Кроме того, на официальном сайте замены обычно размещаются с задержкой. Это также следует учитывать при использовании данного сайта.</i>
+            </p>
+        </div>
 
-		<h2 class="display-6" style="text-align:center">Контакты</h2>
-		<div style="font-family:'Georgia Pro'">
-			<p>
-				Для связи с автором можно использовать следующие контакты:
-			</p>
+        <h2 class="display-6" style="text-align:center">Контакты</h2>
+        <div style="font-family:'Georgia Pro'">
+            <p>
+                Для связи с автором можно использовать следующие контакты:
+            </p>
 
-			<ul>
-				<li><a style="text-decoration:underline" href="mailto:almgal353@gmail.com">Почта автора</a>;</li>
+            <ul>
+                <li>
+                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                       href="mailto:almgal353@gmail.com">Почта автора</a>
+                </li>
 
-				<li><a style="text-decoration:underline" href="mailto:dayradiation@gmail.com">Вторая почта автора</a>;</li>
+                <li>
+                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                       href="mailto:dayradiation@gmail.com">Вторая почта автора</a>
+                </li>
 
-				<li><a style="text-decoration:underline" href="https://vk.com/templateprog">ВК автора</a>.</li>
-			</ul>
-		</div>
-	</main>
+                <li>
+                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                       href="https://vk.com/templateprog">ВК автора</a>
+                </li>
+            </ul>
+        </div>
+    </main>
 </body>
 </html>
