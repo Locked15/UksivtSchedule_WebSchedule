@@ -115,6 +115,7 @@
 </head>
 
 <body style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
+    <!-- Шапка сайта. -->
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -173,6 +174,7 @@
         </nav>
     </header>
 
+    <!-- Рендер основного содержимого страницы. -->
     <div id="MainBlock" class="container content">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -185,6 +187,7 @@
     <!-- Отступ для футера со значениями по умолчанию. -->
     <p id="Divider" style="margin-top:15%"></p>
 
+    <!-- Подвал сайта. -->
     <footer id="FooterBlock" class="border-top footer text-muted">
         <div class="container">
             <div class="float-lg-start" style="display:inline-block">
