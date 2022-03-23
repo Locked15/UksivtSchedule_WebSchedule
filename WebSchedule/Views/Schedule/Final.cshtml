@@ -7,186 +7,188 @@
 
 <html lang="ru">
 <head>
-	<title>@Model.GroupName — @Model.DayId.GetDayByIndex()</title>
+    <title>@Model.GroupName — @Model.DayId.GetDayByIndex()</title>
 
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 
 <body>
-	<!-- Считываем куки. -->
-	@{
-		if (!Extensions.CookiesReaded)
-		{
-			try
-			{
-				IRequestCookieCollection? cookies = Context.Request.Cookies;
+    <!-- Считываем куки. -->
+    @{
+        if (!Extensions.CookiesReaded)
+        {
+            try
+            {
+                IRequestCookieCollection? cookies = Context.Request.Cookies;
 
-				if (cookies.ContainsKey("UseDataBase"))
-				{
-					ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
-				}
+                if (cookies.ContainsKey("UseDataBase"))
+                {
+                    ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
+                }
 
-				if (cookies.ContainsKey("SelectUnsecure"))
-				{
-					ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
-				}
+                if (cookies.ContainsKey("SelectUnsecure"))
+                {
+                    ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
+                }
 
-				if (cookies.ContainsKey("UseDarkTheme"))
-				{
-					Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
-				}
-			}
+                if (cookies.ContainsKey("UseDarkTheme"))
+                {
+                    Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
+                }
+            }
 
-			catch (NullReferenceException)
-			{
+            catch (NullReferenceException)
+            {
 
-			}
+            }
 
-			Extensions.CookiesReaded = true;
-		}
-	}
+            Extensions.CookiesReaded = true;
+        }
+    }
 
-	<h1 class="display-4" style="text-align:center">Расписание</h1>
-	<div style="text-align:center; font-family:'Georgia Pro';">
-		<p>
-			В таблице ниже представлено расписание для текущей группы: @Model.GroupName. <br />
-			Выбранный день: @Model.DayId.GetDayByIndex().
-		</p>
+    <h1 class="display-4" style="text-align:center">Расписание</h1>
+    <div style="text-align:center; font-family:'Georgia Pro';">
+        <p>
+            В таблице ниже представлено расписание для текущей группы: @Model.GroupName. <br />
+            Выбранный день: @Model.DayId.GetDayByIndex().
+        </p>
 
-		<p>
-			@{
-				String firstPart = (Extensions.UseDarkTheme ? "Тёмные строки" : "Белые строки") + " таблицы — элементы оригинального расписания.";
-				String secondPart = (Extensions.UseDarkTheme ? "Белые строки" : "Тёмные строки") + " таблицы — элементы замен.";
+        <p>
+            @{
+                String firstPart = (Extensions.UseDarkTheme ? "Тёмные строки" : "Белые строки") + " таблицы — элементы оригинального расписания.";
+                String secondPart = (Extensions.UseDarkTheme ? "Белые строки" : "Тёмные строки") + " таблицы — элементы замен.";
 
-				@firstPart
+                @firstPart
 
-				<br />
+                <br />
 
-				@secondPart
-			}
-		</p>
-	</div>
+                @secondPart
+            }
+        </p>
+    </div>
 
-	@{
-		ScheduleApi apiConnector = new(Model.DayId, Model.GroupName);
-		DaySchedule schedule = apiConnector.GetSchedule();
+    @{
+        ScheduleApi apiConnector = new(Model.DayId, Model.GroupName);
+        DaySchedule schedule = apiConnector.GetSchedule();
 
-		ChangesOfDay changes = apiConnector.GetChanges();
-		String dateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.ToString("dd.MM.yyyy!") : "[НЕТ ИНФОРМАЦИИ]";
+        ChangesOfDay changes = apiConnector.GetChanges();
+        String dateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.ToString("dd.MM.yyyy!") : "[НЕТ ИНФОРМАЦИИ]";
 
-		// Код для обеспечения кое-какой, но все же работоспособности слияния расписания через БД.
-		if (changes.NewLessons.Count > 0)
-		{
-			schedule = schedule.MergeChanges(changes);
-		}
+        // Код для обеспечения кое-какой, но все же работоспособности слияния расписания через БД.
+        if (changes.NewLessons.Count > 0)
+        {
+            schedule = schedule.MergeChanges(changes);
+        }
 
-		schedule.Lessons.RemoveAll(lesson => !lesson.CheckHaveValue());
+        schedule.Lessons.RemoveAll(lesson => !lesson.CheckHaveValue());
 
-		<h2 class="display-6" style="text-align:center">Расписание на @dateString</h2>
-		<table id="ScheduleTable" class="table table-bordered" style="font-family:'Georgia Pro'; margin-top:1%;">
-			<thead class="thead table-dark">
-				<tr>
-					<th>№</th>
+        <!-- Для обеспечения возможности легкого парсинга страницы (ну а вдруг), проставляем везде ID. -->
+        <h2 class="display-6" style="text-align:center">Расписание на @dateString</h2>
+        <table id="ScheduleTable" class="table table-bordered" style="font-family:'Georgia Pro'; margin-top:1%;">
+            <thead class="thead table-dark">
+                <tr>
+                    <th>№</th>
 
-					<th>Название</th>
+                    <th>Название</th>
 
-					<th>Преподаватель</th>
-					<th>Кабинет</th>
+                    <th>Преподаватель</th>
+                    <th>Кабинет</th>
 
-					<th>Время</th>
-				</tr>
-			</thead>
+                    <th>Время</th>
+                </tr>
+            </thead>
 
-			<tbody id="ScheduleTableBody">
-				@foreach (Lesson lesson in schedule.Lessons)
-				{
-					String color = String.Empty;
+            <tbody id="ScheduleTableBody">
+                @foreach (Lesson lesson in schedule.Lessons)
+                {
+                    String elementId = $"Lesson_{schedule.Lessons.IndexOf(lesson)}";
+                    String color = String.Empty;
 
-					if (lesson.LessonChanged)
-					{
-						color = Extensions.UseDarkTheme ? "table-light" : "table-dark";
-					}
+                    if (lesson.LessonChanged)
+                    {
+                        color = Extensions.UseDarkTheme ? "table-light" : "table-dark";
+                    }
 
-					<tr class="@(Extensions.UseDarkTheme ? "table-dark" : "table-light")">
-						<th scope="row" class=@color>@lesson.Number</th>
+                    <tr id="@elementId" class="@(Extensions.UseDarkTheme ? "table-dark" : "table-light")">
+                        <th scope="row" class=@color>@lesson.Number</th>
 
-						<td class=@color>@lesson.Name</td>
+                        <td class=@color>@lesson.Name</td>
 
-						<td class=@color>@lesson.Teacher</td>
-						<td class=@color>@lesson.Place</td>
+                        <td class=@color>@lesson.Teacher</td>
+                        <td class=@color>@lesson.Place</td>
 
-						<td class=@color>
-							@{
-								String[] times = lesson.Number.GetTime(schedule.Day.GetIndexByDay(), Model.GroupName).Split("\n");
-							}
+                        <td class=@color>
+                            @{
+                                String[] times = lesson.Number.GetTime(schedule.Day.GetIndexByDay(), Model.GroupName).Split("\n");
+                            }
 
-							@foreach (String time in times)
-							{
-								<p>
-									@time
-								</p>
-							}
-						</td>
-					</tr>
-				}
-			</tbody>
-		</table>
+                            @foreach (String time in times)
+                            {
+                                <p>
+                                    @time
+                                </p>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
-		// Сделать асинхронное диалоговое окно не получилось...
-		if (changes.NewLessons.Count == 0)
-		{
-			String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" :
-			"ВНИМАНИЕ: Файл с заменами для указанной даты не обнаружен!";
+        // Сделать асинхронное диалоговое окно не получилось...
+        if (changes.NewLessons.Count == 0)
+        {
+            String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" :
+            "ВНИМАНИЕ: Файл с заменами для указанной даты не обнаружен!";
 
-			<div class="text-danger" style="text-align:center">
-				<p>
-					@firstPartOfMessage <br />
-					Выведено оригинальное расписание.
-				</p>
-			</div>
-		}
+            <div class="text-danger" style="text-align:center">
+                <p id="ScheduleChangesWarning">
+                    @firstPartOfMessage <br />
+                    Выведено оригинальное расписание.
+                </p>
+            </div>
+        }
 
-		String declinatedDay, newDateString;
-		Int32 previousDay = Model.DayId - 1;
-		Int32 nextDay = Model.DayId + 1;
+        String declinatedDay, newDateString;
+        Int32 previousDay = Model.DayId - 1;
+        Int32 nextDay = Model.DayId + 1;
 
-		// Атрибут "hidden" работает не на всех браузерах, поэтому пришлось делать так.
-		if (previousDay >= 0)
-		{
-			// Важно: Надо обработать вторник, потому что в его случае будет "перейти кО вторнику".
-			declinatedDay = previousDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
-			newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(-1).ToString("dd.MM.yyyy!") : "[N/A]";
+        // Атрибут "hidden" работает не на всех браузерах, поэтому пришлось делать так.
+        if (previousDay >= 0)
+        {
+            // Важно: Надо обработать вторник, потому что в его случае будет "перейти кО вторнику".
+            declinatedDay = previousDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
+            newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(-1).ToString("dd.MM.yyyy!") : "[N/A]";
 
-			<div style="text-align:center">
-				<p>
-					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
-						&#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9668;
-					</a>
-				</p>
-			</div>
-		}
+            <div style="text-align:center">
+                <p>
+                    <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
+                        &#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9668;
+                    </a>
+                </p>
+            </div>
+        }
 
-		<div style="text-align:center">
-			<p>
-				<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName=@Model.GroupName>
-					&#9674; Вернуться к выбору дня &#9674;
-				</a>
-			</p>
-		</div>
+        <div style="text-align:center">
+            <p>
+                <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName=@Model.GroupName>
+                    &#9674; Вернуться к выбору дня &#9674;
+                </a>
+            </p>
+        </div>
 
-		if (nextDay < 7)
-		{
-			declinatedDay = nextDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
-			newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(1).ToString("dd.MM.yyyy!") : "[N/A]";
+        if (nextDay < 7)
+        {
+            declinatedDay = nextDay.GetDayByIndex().ConvertToOtherDeclination().ToLower();
+            newDateString = changes.ChangesDate.HasValue ? changes.ChangesDate.Value.AddDays(1).ToString("dd.MM.yyyy!") : "[N/A]";
 
-			<div style="text-align:center">
-				<p>
-					<a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
-						&#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9658;
-					</a>
-				</p>
-			</div>
-		}
-	}
+            <div style="text-align:center">
+                <p>
+                    <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
+                        &#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9658;
+                    </a>
+                </p>
+            </div>
+        }
+    }
 </body>
 </html>
