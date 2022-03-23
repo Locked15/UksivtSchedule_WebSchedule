@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 a.navbar-brand {
@@ -64,6 +64,25 @@ button.accept-policy {
     line-height: 60px;
 }
 
-nav.navbar .dropdown:hover > .dropdown-menu {
-    display: block;
+/* Событие наведения на дополнительные ссылки для ПК. */
+@media (min-width: 681px) {
+    nav.navbar .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+}
+
+/* Сворачивание отображения времени на мобильных устройствах. */
+@media (max-width: 680px) {
+    ul.time-view {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/* Сворачивание дополнительных ссылок на мобильных устройствах. */
+@media (max-width: 550px) {
+    li.side-links {
+        visibility: hidden;
+        display: none;
+    }
 }

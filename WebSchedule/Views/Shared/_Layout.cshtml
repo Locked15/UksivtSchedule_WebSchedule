@@ -74,6 +74,26 @@
         }
 
         /**
+         * Функция, дополняющая элемент с дополнительными ссылками в зависимости от ширины экрана.
+         */
+        function updateLinksAttributes()
+        {
+            var element = document.getElementById("links");
+
+            if (window.innerWidth > 680)
+            {
+                element.removeAttribute("data-bs-toggle");
+                element.removeAttribute("aria-expanded");
+            }
+
+            else
+            {
+                element.setAttribute("data-bs-toggle", "dropdown");
+                element.setAttribute("aria-expanded", "false");
+            }
+        }
+
+        /**
          * Событие, происходящее при загрузке страницы.
          * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
          *
@@ -82,6 +102,7 @@
         function onLoad()
         {
             insertDateTime();
+            updateLinksAttributes();
 
             setInterval(insertDateTime, 60000);
         }
@@ -89,6 +110,7 @@
         window.addEventListener('load', onLoad);
         window.addEventListener('load', insertMargin);
         window.addEventListener('resize', insertMargin);
+        window.addEventListener('resize', updateLinksAttributes);
     </script>
 </head>
 
@@ -99,7 +121,7 @@
                 <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
                    title="Главная страница">Расписание УКСИВТ</a>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display:inline">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display: block">
                     <!-- Левая часть. -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <!-- Информация. -->
@@ -121,12 +143,12 @@
                         </li>
 
                         <!-- Дополнительные ссылки. -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown side-links">
                             <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black")" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false" href="#">Ссылки</a>
+                               href="#">Ссылки</a>
 
                             <div class="dropdown-menu submenu" style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black");
-							border:solid; border-color: @(Extensions.UseDarkTheme ? "white" : "black")" aria-labelledby="links">
+							     border:solid; border-color: @(Extensions.UseDarkTheme ? "white" : "black")" aria-labelledby="links">
                                 <!-- Официальный сайт. -->
                                 <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
 								text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
@@ -139,7 +161,7 @@
                     </ul>
 
                     <!-- Правая часть. -->
-                    <ul class="navbar-nav">
+                    <ul class="time-view navbar-nav">
                         <!-- Вывод времени. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
                             <div id="CurrentTime" title="Текущее время"> </div>
