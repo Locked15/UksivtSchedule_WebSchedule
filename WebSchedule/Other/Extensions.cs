@@ -1,4 +1,5 @@
-﻿using Bool = System.Boolean;
+﻿using WebSchedule.Schedule.Getter;
+using Bool = System.Boolean;
 
 namespace WebSchedule.Other
 {
@@ -18,6 +19,54 @@ namespace WebSchedule.Other
         /// Нужно, чтобы куки считывались только в самом начале работы сайта.
         /// </summary>
         public static Bool CookiesReaded { get; set; } = false;
+
+        /// <summary>
+        /// Статический метод, позволяющий прочитать Cookie-файлы прямо в коде из отправленного контекста.
+        /// <br/>
+        /// Позволяет сократить код, просто вызывая эту функцию, вместо создания одной и той же логики в разных файлах.
+        /// </summary>
+        /// <param name="context">Контекст приложения для чтения файлов Cookies.</param>
+        /// <returns>
+        /// Чтобы вызов функции в RazorPages можно было обернуть в одиночную строку, она должна что-либо возвращать.
+        /// В данном случае функция возвращает успешность считывания файлов.
+        /// </returns>
+        public static Object? ReadCookies(dynamic context)
+        {
+            if (!CookiesReaded)
+            {
+                try
+                {
+                    IRequestCookieCollection? cookies = context.Request.Cookies;
+
+                    if (cookies.ContainsKey("UseDataBase"))
+                    {
+                        ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
+                    }
+
+                    if (cookies.ContainsKey("SelectUnsecure"))
+                    {
+                        ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
+                    }
+
+                    if (cookies.ContainsKey("UseDarkTheme"))
+                    {
+                        UseDarkTheme = cookies["UseDarkTheme"] == "on";
+                    }
+                }
+
+                catch
+                {
+                    ScheduleApi.UseDataBase = false;
+                    ScheduleApi.SelectUnsecure = false;
+
+                    UseDarkTheme = false;
+                }
+
+                CookiesReaded = true;
+            }
+
+            return null;
+        }
 
         /// <summary>
         /// Метод расширения, позволяющий получить день по указанному индексу.

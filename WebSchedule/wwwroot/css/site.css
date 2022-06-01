@@ -71,14 +71,6 @@ button.accept-policy {
     }
 }
 
-/* Сворачивание отображения времени на мобильных устройствах. */
-@media (max-width: 680px) {
-    ul.time-view {
-        visibility: hidden;
-        display: none;
-    }
-}
-
 /* Сворачивание дополнительных ссылок на мобильных устройствах. */
 @media (max-width: 550px) {
     li.side-links {

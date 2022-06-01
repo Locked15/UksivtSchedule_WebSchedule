@@ -6,6 +6,7 @@
 <html lang="ru">
 <head>
     <title>Информация — Расписание УКСИВТ</title>
+    @Extensions.ReadCookies(this)
 
     <style>
         a#infoLink:hover {
@@ -17,39 +18,6 @@
 </head>
 
 <body>
-    <!-- Считываем куки. -->
-    @{
-        if (!Extensions.CookiesReaded)
-        {
-            try
-            {
-                IRequestCookieCollection? cookies = Context.Request.Cookies;
-
-                if (cookies.ContainsKey("UseDataBase"))
-                {
-                    ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
-                }
-
-                if (cookies.ContainsKey("SelectUnsecure"))
-                {
-                    ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
-                }
-
-                if (cookies.ContainsKey("UseDarkTheme"))
-                {
-                    Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
-                }
-            }
-
-            catch (NullReferenceException)
-            {
-
-            }
-
-            Extensions.CookiesReaded = true;
-        }
-    }
-
     <main>
         <h1 class="display-4" style="text-align:center">Информация о сайте</h1>
 

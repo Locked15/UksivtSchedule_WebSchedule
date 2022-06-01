@@ -7,6 +7,22 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
+
+		<ApplicationManifest>wwwroot\site-manifest.json</ApplicationManifest>
+
+		<PackageIcon>icon_128px.png</PackageIcon>
+
+		<Description>Site with UKSIVT college schedule.</Description>
+
+		<Copyright>Locked15</Copyright>
+
+		<PackageProjectUrl>https://webschedule.azurewebsites.net/</PackageProjectUrl>
+
+		<RepositoryType>git</RepositoryType>
+
+		<RepositoryUrl>https://github.com/Locked15/WebSchedule</RepositoryUrl>
+
+		<PackageTags>schedule; uksivt; college; webschedule; web schedule </PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,7 +31,13 @@
 
 	<ItemGroup>
 	  <Folder Include="Other\Data\" />
-	  <Folder Include="wwwroot\icons\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="wwwroot\icons\icon_128px.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

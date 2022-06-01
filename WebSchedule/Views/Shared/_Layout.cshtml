@@ -15,7 +15,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site.js"></script>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -34,44 +34,26 @@
 
     <script type="text/javascript">
         /**
-         * Функция, вставляющая цифру 0 перед значениями меньше 10.
-         */
-        function insertZero(value)
-        {
-            if (value < 10)
-            {
-                value = '0' + value;
-            }
-
-            return value;
-        }
-
-        /**
-         * Функция для вставки даты и времени на страницу.
-         */
-        function insertDateTime()
-        {
-                var allDate = new Date();
-                var day = insertZero(allDate.getDate());
-                var month = insertZero(allDate.getMonth() + 1);
-                var year = allDate.getFullYear();
-                var hour = insertZero(allDate.getHours());
-                var minute = insertZero(allDate.getMinutes());
-
-                document.getElementById("CurrentTime").innerHTML = hour + ':' + minute;
-                document.getElementById("CurrentDate").innerHTML = day + '.' + month + '.' + year + '!';
-        }
-
-        /**
          * Функция для вставки отстутпа от "футера" страницы, чтобы контент не попадал за него.
          */
-        function insertMargin()
+        function updateMarginSpace()
         {
             var main = document.getElementById("Divider");
             var footer = document.getElementById("FooterBlock");
 
             // Чтобы футер не подходил очень близко к контенту, увеличиваем отступ.
             main.style.marginTop = footer.clientHeight + 50 + 'px';
+        }
+
+        /**
+         * Обновляет данные о текущей паре и времени её завершения.
+         */
+        function insertLessonsInfo()
+        {
+            var firstElement = document.getElementById("CurrentLessonDescription");
+            var secondElement = document.getElementById("CurrentLessonEndEstimatedTime");
+
+            updateInfoAboutLessons(firstElement, secondElement);
         }
 
         /**
@@ -102,15 +84,15 @@
          */
         function onLoad()
         {
-            insertDateTime();
+            updateMarginSpace();
+            insertLessonsInfo();
             updateLinksAttributes();
 
-            setInterval(insertDateTime, 60000);
+            setInterval(insertLessonsInfo, 60000);
         }
 
         window.addEventListener('load', onLoad);
-        window.addEventListener('load', insertMargin);
-        window.addEventListener('resize', insertMargin);
+        window.addEventListener('resize', updateMarginSpace);
         window.addEventListener('resize', updateLinksAttributes);
     </script>
 </head>
@@ -130,12 +112,6 @@
                         <li class="nav-item" style="font-family:'Georgia Pro'">
                             <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
                                title="Информация о сайте">Информация</a>
-                        </li>
-
-                        <!-- Соглашение. -->
-                        <li class="nav-item" style="font-family:'Georgia Pro'">
-                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Privacy" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
-                               title="Пользовательское соглашение">Соглашение</a>
                         </li>
 
                         <!-- Настройки. -->
@@ -164,10 +140,10 @@
 
                     <!-- Правая часть. -->
                     <ul class="time-view navbar-nav">
-                        <!-- Вывод времени. -->
+                        <!-- Вывод данных о парах. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
-                            <div id="CurrentTime" title="Текущее время"> </div>
-                            <div id="CurrentDate" title="Текущая дата"> </div>
+                            <div id="CurrentLessonDescription" title="Текущее событие" style="font-size:1.25em"> </div>
+                            <div id="CurrentLessonEndEstimatedTime" title="Оставшееся время" style="font-size:1.25em"> </div>
                         </li>
                     </ul>
                 </div>
