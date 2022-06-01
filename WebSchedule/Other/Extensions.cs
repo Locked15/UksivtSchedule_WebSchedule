@@ -281,5 +281,24 @@ namespace WebSchedule.Other
                 };
             }
         }
+
+        /// <summary>
+        /// Заменяет все вхождения отправленных строк на указанный символ.
+        /// </summary>
+        /// <param name="baseString">Базовая строка, которая будет изменяться.</param>
+        /// <param name="newValue">Символ, на который будут изменяться вхождения.</param>
+        /// <param name="toReplce">Вхождения ключевых символов, которые следует заменить.</param>
+        /// <returns>Новая строка с измененными вхождениями.</returns>
+        public static String ReplaceAll(this String baseString, String newValue, params String[] toReplce)
+        {
+            String toReturn = baseString;
+
+            foreach (String repl in toReplce)
+            {
+                toReturn = toReturn.Replace(repl, newValue);
+            }
+
+            return toReturn;
+        }
     }
 }

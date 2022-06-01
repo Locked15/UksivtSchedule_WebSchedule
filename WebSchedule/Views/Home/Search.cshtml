@@ -6,7 +6,7 @@
 
 <html lang="ru">
 <head>
-	<title>Поиск: @Model.Request — Расписание УКСИВТ</title>
+	<title>Поиск: @Model.BaseRequest — Расписание УКСИВТ</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@
 	<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">
 		<form>
 			<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:75%;  background-color: @(Extensions.UseDarkTheme ? "rgb(49,69,89)" : "white");
-			text-align:center; color: @(Extensions.UseDarkTheme ? "white" : "black"); font-style: italic;" placeholder="Название группы..." value="@Model.Request"/>
+			text-align:center; color: @(Extensions.UseDarkTheme ? "white" : "black"); font-style: italic;" placeholder="Название группы..." value="@Model.BaseRequest"/>
 			<br/> <br/>
 
 		<button class="btn btn-outline-primary" style="width:25%" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>
@@ -55,26 +55,33 @@
 	</div>
 
 	<h2 id="SearchHeader" class="display-6" style="text-align:center; margin-top:2%;">Результаты поиска</h2>
-	@if (Model.Request.Equals("19П-5"))
+	@if (Model.RestInPeace)
 	{
 		<p style="text-align:center; margin-top:25px; font-style:italic;">
 			Requiescat In Pace: 19П-5 (2019 — 2022).
 		</p>
 	}
 
-	else if (Model.Request.Equals(String.Empty))
+	else if (Model.NormalRequest == String.Empty)
 	{
-		<p style="text-align:center; margin-top:25px;">
-			Задан пустой поисковый запрос.
+		<p style="text-align:center; margin-top:25px; font-size: 2.5em;">
+			Задан пустой поисковый запрос... &#128532;
+		</p>
+	}
+
+	else if (Model.Options.Count < 1)
+	{
+		<p style="text-align:center; margin-top:25px; font-size: 2.5em;">
+			По вашему запросу ничего не найдено... &#128531;
 		</p>
 	}
 
 	else
 	{
-		foreach (String option in Model.Options)
+		foreach (String? option in Model.Options)
 		{
 			<p style="text-align:center">
-				<a class="btn btn-outline-primary" style="width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName="@option">@option</a>
+				<a class="btn btn-outline-primary" style="width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName="@option">Группа: @option</a>
 			</p>
 		}
 	}
