@@ -64,7 +64,7 @@ function calculateCurrentLesson(dateInfo)
 
     else
     {
-        currentLesson = "Сейчас: Выходной день.";
+        currentLesson = "Сейчас: выходной день.";
     }
 
     return currentLesson;
@@ -89,7 +89,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(9, 20) < minutesInfo && minutesInfo < getMinutesFromTime(9, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 1 пара.
@@ -100,7 +100,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(11, 05) < minutesInfo && minutesInfo < getMinutesFromTime(11, 15))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 2 пара.
@@ -111,7 +111,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(13, 30) < minutesInfo && minutesInfo < getMinutesFromTime(13, 35))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 3 пара.
@@ -122,7 +122,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(15, 10) < minutesInfo && minutesInfo < getMinutesFromTime(15, 20))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // Классный час.
@@ -133,7 +133,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(16, 00) < minutesInfo && minutesInfo < getMinutesFromTime(16, 10))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 4 пара.
@@ -144,7 +144,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(17, 30) < minutesInfo && minutesInfo < getMinutesFromTime(17, 40))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 5 пара.
@@ -155,7 +155,7 @@ function getLessonNumberForWednesday(minutesInfo)
 
     else if (getMinutesFromTime(18, 50) < minutesInfo && minutesInfo < getMinutesFromTime(19, 00))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 6 пара.
@@ -192,7 +192,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(9, 20) < minutesInfo && minutesInfo < getMinutesFromTime(9, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 1 пара.
@@ -203,7 +203,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(10, 50) < minutesInfo && minutesInfo < getMinutesFromTime(11, 00))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 2 пара.
@@ -214,7 +214,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(12, 20) < minutesInfo && minutesInfo < getMinutesFromTime(12, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 3 пара.
@@ -225,7 +225,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(13, 50) < minutesInfo && minutesInfo < getMinutesFromTime(14, 00))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 4 пара.
@@ -236,7 +236,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(15, 20) < minutesInfo && minutesInfo < getMinutesFromTime(15, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 5 пара.
@@ -247,7 +247,7 @@ function getLessonNumberForSaturday(minutesInfo)
 
     else if (getMinutesFromTime(16, 50) < minutesInfo && minutesInfo < getMinutesFromTime(17, 00))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 6 пара.
@@ -284,7 +284,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(9, 20) < minutesInfo && minutesInfo < getMinutesFromTime(9, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 1 пара.
@@ -295,7 +295,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(11, 05) < minutesInfo && minutesInfo < getMinutesFromTime(11, 15))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 2 пара.
@@ -306,7 +306,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(13, 30) < minutesInfo && minutesInfo < getMinutesFromTime(13, 35))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 3 пара.
@@ -317,7 +317,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(15, 10) < minutesInfo && minutesInfo < getMinutesFromTime(15, 20))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 4 пара.
@@ -328,7 +328,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(16, 50) < minutesInfo && minutesInfo < getMinutesFromTime(17, 00))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 5 пара.
@@ -339,7 +339,7 @@ function getLessonNumberForOtherDays(minutesInfo)
 
     else if (getMinutesFromTime(18, 20) < minutesInfo && minutesInfo < getMinutesFromTime(18, 30))
     {
-        currentLesson = "Сейчас: Перемена.";
+        currentLesson = "Сейчас: перемена.";
     }
 
     // 6 пара.
@@ -389,7 +389,7 @@ function calculateCurrentLessonEndTime(dateInfo)
         }
 
         // Формируем сообщение для вывода:
-        if (endTime != -2)
+        if (endTime != -1)
         {
             let hours = Math.floor(endTime / 60);
             let minutes = endTime % 60;
@@ -399,9 +399,14 @@ function calculateCurrentLessonEndTime(dateInfo)
                 endTime = `До конца: ${hours}ч, ${minutes}м.`;
             }
 
-            else
+            else if (minutes > 0)
             {
                 endTime = `До конца: ${minutes}м.`;
+            }
+
+            else
+            {
+                endTime = `До конца: меньше минуты.`;
             }
         }
 
@@ -517,7 +522,7 @@ function getEndTimeForWednesday(dateInfo)
     // Внеучебное время.
     else
     {
-        calculatedTimeInMinutes = -2;
+        calculatedTimeInMinutes = -1;
     }
 
     return calculatedTimeInMinutes;
@@ -610,7 +615,7 @@ function getEndTimeForSaturday(dateInfo)
     // Внеучебное время.
     else
     {
-        calculatedTimeInMinutes = -2;
+        calculatedTimeInMinutes = -1;
     }
 
     return calculatedTimeInMinutes;
@@ -704,7 +709,7 @@ function getEndTimeForOtherDays(dateInfo)
     // Внеучебное время.
     else
     {
-        calculatedTimeInMinutes = -2;
+        calculatedTimeInMinutes = -1;
     }
 
     return calculatedTimeInMinutes;
