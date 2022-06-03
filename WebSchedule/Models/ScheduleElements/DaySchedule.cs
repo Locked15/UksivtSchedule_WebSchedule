@@ -1,6 +1,7 @@
 ﻿using System.Text;
+using WebSchedule.Models.ScheduleElements;
 
-namespace WebSchedule.Schedule.ScheduleElements
+namespace WebSchedule.Models.ScheduleElements
 {
     /// <summary>
     /// Класс, представляющий расписание на один день.

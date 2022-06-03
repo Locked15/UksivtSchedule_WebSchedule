@@ -1,6 +1,6 @@
 ﻿using Bool = System.Boolean;
 
-namespace WebSchedule.Schedule.ScheduleElements
+namespace WebSchedule.Models.ScheduleElements
 {
     /// <summary>
     /// Класс, представляющий сущность замен, вытягиваемых из API.

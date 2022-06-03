@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using WebSchedule.Other;
-using WebSchedule.Schedule.ScheduleElements;
+using WebSchedule.Controllers.Other;
+using WebSchedule.Models.ScheduleElements;
 using Bool = System.Boolean;
 
-namespace WebSchedule.Schedule.Getter
+namespace WebSchedule.Controllers.Schedule.Getter
 {
     /// <summary>
     /// Класс, содержащий логику для получения данных из API.

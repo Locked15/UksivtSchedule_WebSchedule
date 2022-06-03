@@ -1,50 +1,17 @@
 ﻿<!DOCTYPE html>
 
-@using WebSchedule.Other;
-@using WebSchedule.Models;
-@using WebSchedule.Schedule.Getter;
+@using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Schedule.Getter
 
 @model ScheduleApi;
 
 <html lang="ru">
 <head>
 	<title>Заглавная — Расписание УКСИВТ</title>
+	@Extensions.ReadCookies(this)
 </head>
 
 <body>
-	<!-- Считываем куки. -->
-	@{
-		if (!Extensions.CookiesReaded)
-		{
-			try
-			{
-				IRequestCookieCollection? cookies = Context.Request.Cookies;
-
-				if (cookies.ContainsKey("UseDataBase"))
-				{
-					ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
-				}
-
-				if (cookies.ContainsKey("SelectUnsecure"))
-				{
-					ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
-				}
-
-				if (cookies.ContainsKey("UseDarkTheme"))
-				{
-					Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
-				}
-			}
-
-			catch (NullReferenceException)
-			{
-
-			}
-
-			Extensions.CookiesReaded = true;
-		}
-	}
-
 	<div style="margin-top:5%">
 		<h1 class="display-4" style="text-align:center">Поиск</h1>
 		<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">

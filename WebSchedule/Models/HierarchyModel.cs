@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using WebSchedule.Schedule.Getter;
+using WebSchedule.Controllers.Schedule.Getter;
 
 namespace WebSchedule.Models
 {
@@ -70,7 +70,7 @@ namespace WebSchedule.Models
         /// <param name="path">Путь к приложению, развернутому на сервере.</param>
         public static void InitializeAllGroups(String path)
         {
-            String filePath = Path.Combine(path, "Other", "Data", "AllGroups.json");
+            String filePath = Path.Combine(path, "Controllers", "Other", "Data", "AllGroups.json");
 
             // Чтобы ускорить работу сайта, используем файл:
             if (File.Exists(filePath))

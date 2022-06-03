@@ -1,48 +1,15 @@
 ﻿<!DOCTYPE html>
 
-@using WebSchedule.Other
-@using WebSchedule.Schedule.Getter
 @model ScheduleModel;
+@using WebSchedule.Controllers.Other
 
 <html lang="ru">
 <head>
 	<title>Выбор дня: @Model.GroupName — Расписание УКСИВТ</title>
+	@Extensions.ReadCookies(this)
 </head>
 
 <body>
-	<!-- Считываем куки. -->
-	@{
-		if (!Extensions.CookiesReaded)
-		{
-			try
-			{
-				IRequestCookieCollection? cookies = Context.Request.Cookies;
-
-				if (cookies.ContainsKey("UseDataBase"))
-				{
-					ScheduleApi.UseDataBase = cookies["UseDataBase"] == "on";
-				}
-
-				if (cookies.ContainsKey("SelectUnsecure"))
-				{
-					ScheduleApi.SelectUnsecure = cookies["SelectUnsecure"] == "on";
-				}
-
-				if (cookies.ContainsKey("UseDarkTheme"))
-				{
-					Extensions.UseDarkTheme = cookies["UseDarkTheme"] == "on";
-				}
-			}
-
-			catch (NullReferenceException)
-			{
-
-			}
-
-			Extensions.CookiesReaded = true;
-		}
-	}
-
 	<h1 class="display-4" style="text-align:center">День недели</h1>
 	<div style="text-align:center; font-family:'Georgia Pro';">
 		<p>

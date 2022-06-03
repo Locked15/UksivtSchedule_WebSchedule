@@ -1,4 +1,4 @@
-﻿namespace WebSchedule.Schedule.Getter
+﻿namespace WebSchedule.Controllers.Schedule.Getter
 {
     /// <summary>
     /// Вспомогательный класс для "ScheduleApi", содержащий URL-пути.

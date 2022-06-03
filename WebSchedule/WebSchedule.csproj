@@ -30,10 +30,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Other\Data\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Include="wwwroot\icons\icon_128px.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>

@@ -1,4 +1,4 @@
-﻿using WebSchedule.Schedule.ScheduleElements;
+﻿using WebSchedule.Models.ScheduleElements;
 
 namespace WebSchedule.Models
 {

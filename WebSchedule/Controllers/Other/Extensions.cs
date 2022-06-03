@@ -1,13 +1,15 @@
-﻿using WebSchedule.Schedule.Getter;
+﻿using WebSchedule.Controllers.Schedule.Getter;
 using Bool = System.Boolean;
 
-namespace WebSchedule.Other
+namespace WebSchedule.Controllers.Other
 {
     /// <summary>
     /// Статический класс, содержащий методы расширения.
     /// </summary>
     public static class Extensions
     {
+        #region Область: Считывание Cookie-файлов.
+
         /// <summary>
         /// Статическое свойство, отвечающее за использование темной темы.
         /// </summary>
@@ -36,7 +38,7 @@ namespace WebSchedule.Other
             {
                 try
                 {
-                    IRequestCookieCollection? cookies = context.Request.Cookies;
+                    IRequestCookieCollection? cookies = context.Context.Request.Cookies;
 
                     if (cookies.ContainsKey("UseDataBase"))
                     {
@@ -67,6 +69,9 @@ namespace WebSchedule.Other
 
             return null;
         }
+        #endregion
+
+        #region Область: Обработка дней.
 
         /// <summary>
         /// Метод расширения, позволяющий получить день по указанному индексу.
@@ -216,6 +221,9 @@ namespace WebSchedule.Other
                     return "Воскресенью";
             }
         }
+        #endregion
+
+        #region Область: Проверка на курс.
 
         /// <summary>
         /// Метод для проверки группы на её отношение к первому курсу.
@@ -254,6 +262,9 @@ namespace WebSchedule.Other
             String yearPath = date.Year.ToString()[2..4];
             return groupName.Contains(yearPath);
         }
+        #endregion
+
+        #region Область: Прочие функции.
 
         /// <summary>
         /// Метод для получения строки с временем пар.
@@ -349,5 +360,6 @@ namespace WebSchedule.Other
 
             return toReturn;
         }
+        #endregion
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebSchedule.Other;
 using WebSchedule.Models;
-using WebSchedule.Schedule.Getter;
+using WebSchedule.Controllers.Other;
+using WebSchedule.Controllers.Schedule.Getter;
 
 namespace WebSchedule.Controllers
 {
