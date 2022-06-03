@@ -391,25 +391,17 @@ function calculateCurrentLessonEndTime(dateInfo)
         // Формируем сообщение для вывода:
         if (endTime != -2)
         {
-            if (endTime == -1)
+            let hours = Math.floor(endTime / 60);
+            let minutes = endTime % 60;
+
+            if (hours > 0)
             {
-                endTime = "Новая пара скоро начнется.";
+                endTime = `До конца: ${hours}ч, ${minutes}м.`;
             }
 
             else
             {
-                let hours = Math.floor(endTime / 60);
-                let minutes = endTime % 60;
-
-                if (hours > 0)
-                {
-                    endTime = `До конца: ${hours}ч, ${minutes}м.`;
-                }
-
-                else
-                {
-                    endTime = `До конца: ${minutes}м.`;
-                }
+                endTime = `До конца: ${minutes}м.`;
             }
         }
 
@@ -447,7 +439,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(9, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(9, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(9, 29) - currentTimeInMinutes;
     }
 
     // 1 пара.
@@ -458,7 +450,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(11, 05) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(11, 15))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(11, 14) - currentTimeInMinutes;
     }
 
     // 2 пара.
@@ -469,7 +461,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(13, 30) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(13, 35))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(13, 34) - currentTimeInMinutes;
     }
 
     // 3 пара.
@@ -480,7 +472,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(15, 10) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(15, 20))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(15, 19) - currentTimeInMinutes;
     }
 
     // Классный час.
@@ -491,7 +483,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(16, 00) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(16, 10))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(16, 09) - currentTimeInMinutes;
     }
 
     // 4 пара.
@@ -502,7 +494,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(17, 30) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(17, 40))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(17, 39) - currentTimeInMinutes;
     }
 
     // 5 пара.
@@ -513,7 +505,7 @@ function getEndTimeForWednesday(dateInfo)
 
     else if (getMinutesFromTime(18, 50) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(19, 00))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(18, 59) - currentTimeInMinutes;
     }
 
     // 6 пара.
@@ -551,7 +543,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(9, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(9, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(9, 29) - currentTimeInMinutes;
     }
 
     // 1 пара.
@@ -562,7 +554,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(10, 50) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(11, 00))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(10, 59) - currentTimeInMinutes;
     }
 
     // 2 пара.
@@ -573,7 +565,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(12, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(12, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(12, 29) - currentTimeInMinutes;
     }
 
     // 3 пара.
@@ -584,7 +576,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(13, 50) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(14, 00))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(13, 59) - currentTimeInMinutes;
     }
 
     // 4 пара.
@@ -595,7 +587,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(15, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(15, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(15, 29) - currentTimeInMinutes;
     }
 
     // 5 пара.
@@ -606,7 +598,7 @@ function getEndTimeForSaturday(dateInfo)
 
     else if (getMinutesFromTime(16, 50) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(17, 00))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(16, 59) - currentTimeInMinutes;
     }
 
     // 6 пара.
@@ -645,7 +637,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(9, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(9, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(9, 29) - currentTimeInMinutes;
     }
 
     // 1 пара.
@@ -656,7 +648,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(11, 05) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(11, 15))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(11, 14) - currentTimeInMinutes;
     }
 
     // 2 пара.
@@ -667,7 +659,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(13, 30) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(13, 35))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(13, 34) - currentTimeInMinutes;
     }
 
     // 3 пара.
@@ -678,7 +670,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(15, 10) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(15, 20))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(15, 19) - currentTimeInMinutes;
     }
 
     // 4 пара.
@@ -689,7 +681,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(16, 50) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(17, 00))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(16, 59) - currentTimeInMinutes;
     }
 
     // 5 пара.
@@ -700,7 +692,7 @@ function getEndTimeForOtherDays(dateInfo)
 
     else if (getMinutesFromTime(18, 20) < currentTimeInMinutes && currentTimeInMinutes < getMinutesFromTime(18, 30))
     {
-        calculateCurrentLesson = -1;
+        calculatedTimeInMinutes = getMinutesFromTime(18, 29) - currentTimeInMinutes;
     }
 
     // 6 пара.
