@@ -167,7 +167,7 @@ function getLessonNumberForWednesday(minutesInfo)
     // Внеучебное время.
     else
     {
-        currentLesson = "Сейчас: Внеучебное время.";
+        currentLesson = "Сейчас: внеучебное время.";
     }
 
     return currentLesson;
@@ -259,7 +259,7 @@ function getLessonNumberForSaturday(minutesInfo)
     // Внеучебное время.
     else
     {
-        currentLesson = "Сейчас: Внеучебное время.";
+        currentLesson = "Сейчас: внеучебное время.";
     }
 
     return currentLesson;
@@ -351,7 +351,7 @@ function getLessonNumberForOtherDays(minutesInfo)
     // Внеучебное время.
     else
     {
-        currentLesson = "Сейчас: Внеучебное время.";
+        currentLesson = "Сейчас: внеучебное время.";
     }
 
     return currentLesson;
@@ -418,7 +418,7 @@ function calculateCurrentLessonEndTime(dateInfo)
 
     else
     {
-        endTime = "Вот и выходные.";
+        endTime = "Выходной.";
     }
 
     return endTime;
