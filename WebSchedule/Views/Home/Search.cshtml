@@ -1,20 +1,23 @@
 ﻿<!DOCTYPE html>
 
 @model SearchModel
+
 @using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
 
 <html lang="ru">
 <head>
 	<title>Поиск: @Model.BaseRequest — Расписание УКСИВТ</title>
-	@Extensions.ReadCookies(this)
+
+	@CookieFiles.ReadCookies(this)
 </head>
 
 <body>
 	<h1 class="display-4" style="text-align:center">Поиск</h1>
 	<div style="font-family:'Georgia Pro'; text-align:center; margin-top:15px;">
 		<form>
-			<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:75%;  background-color: @(Extensions.UseDarkTheme ? "rgb(49,69,89)" : "white");
-			text-align:center; color: @(Extensions.UseDarkTheme ? "white" : "black"); font-style: italic;" placeholder="Название группы..." value="@Model.BaseRequest"/>
+			<input id="searchBox" name="groupName" type="search" class="rounded-pill border-primary" style="width:75%; color: @CookieFiles.VisualPart.GetViewsMainColor();
+			text-align:center; background-color: @CookieFiles.VisualPart.GetViewsBackgroundColor(); font-style: italic;" placeholder="Название группы..." value="@Model.BaseRequest"/>
 			<br/> <br/>
 
 		<button class="btn btn-outline-primary" style="width:25%" type="submit" formmethod="get" asp-controller="Home" asp-action="Search">Искать</button>

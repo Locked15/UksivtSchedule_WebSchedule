@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebSchedule.Models;
 using WebSchedule.Controllers.Other;
+using WebSchedule.Controllers.Cookies;
 using WebSchedule.Controllers.Schedule.Getter;
 
 namespace WebSchedule.Controllers
@@ -83,13 +84,12 @@ namespace WebSchedule.Controllers
         /// </summary>
         /// <param name="useDb">Использовать базу данных для получения значений?</param>
         /// <param name="selectUnsecure">Выбирать небезопасные значения?</param>
+        /// <param name="newTheme">Название новой темы.</param>
         /// <returns>Главная страница.</returns>
-        public IActionResult SaveSettings(String useDb, String selectUnsecure, String darkTheme)
+        public IActionResult SaveSettings(String useDb, String selectUnsecure, String newTheme)
         {
             IRequestCookieCollection? cookies = HttpContext.Request.Cookies;
-            ScheduleApi.UseDataBase = useDb == "on";
-            ScheduleApi.SelectUnsecure = selectUnsecure == "on";
-            Extensions.UseDarkTheme = darkTheme == "on";
+            CookieFiles.SetCookies(useDb == "on", selectUnsecure == "on", ThemeConverter.FromString(newTheme));
 
             #region Подобласть: Удаление повторяющихся куков.
             if (cookies.ContainsKey("UseDataBase"))
@@ -102,15 +102,22 @@ namespace WebSchedule.Controllers
                 HttpContext.Response.Cookies.Delete("SelectUnsecure");
             }
 
-            if (cookies.ContainsKey("UseDarkTheme"))
+            if (cookies.ContainsKey("CurrentTheme"))
             {
-                HttpContext.Response.Cookies.Delete("UseDarkTheme");
+                HttpContext.Response.Cookies.Delete("CurrentTheme");
             }
             #endregion
 
-            HttpContext.Response.Cookies.Append("UseDataBase", useDb ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
-            HttpContext.Response.Cookies.Append("SelectUnsecure", selectUnsecure ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
-            HttpContext.Response.Cookies.Append("UseDarkTheme", darkTheme ?? "false", new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+            #region Подобласть: Установка новых куков.
+            HttpContext.Response.Cookies.Append("UseDataBase", CookieFiles.UseDataBase.ToString(), 
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+
+            HttpContext.Response.Cookies.Append("SelectUnsecure", CookieFiles.SelectUnsecure.ToString(), 
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+
+            HttpContext.Response.Cookies.Append("CurrentTheme", CookieFiles.CurrentTheme.ToString(), 
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+            #endregion
 
             return View("MainPage");
         }
@@ -136,7 +143,6 @@ namespace WebSchedule.Controllers
         /// Событие, возникающее при ошибке.
         /// </summary>
         /// <returns>Создает новую страницу ошибки.</returns>
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

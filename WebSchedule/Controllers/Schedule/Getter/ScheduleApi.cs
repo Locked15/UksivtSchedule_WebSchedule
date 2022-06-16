@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using WebSchedule.Controllers.Other;
+using WebSchedule.Controllers.Cookies;
 using WebSchedule.Models.ScheduleElements;
-using Bool = System.Boolean;
 
 namespace WebSchedule.Controllers.Schedule.Getter
 {
@@ -22,20 +22,6 @@ namespace WebSchedule.Controllers.Schedule.Getter
         public String GroupName;
         #endregion
 
-        #region Область: Свойства.
-        /// <summary>
-        /// Свойство, отвечающее за то, будут ли данные вытягиваться из БД или ассетов.
-        /// </summary>
-        public static Bool UseDataBase { get; set; }
-
-        /// <summary>
-        /// Свойство, отвечающее за то, будут ли использоваться "небезопасные" данные.
-        /// <br/>
-        /// Работает только при вытягивании данных из БД.
-        /// </summary>
-        public static Bool SelectUnsecure { get; set; }
-        #endregion
-
         #region Область: Конструкторы класса.
         /// <summary>
         /// Конструктор класса.
@@ -46,16 +32,6 @@ namespace WebSchedule.Controllers.Schedule.Getter
         {
             DayInd = day;
             GroupName = group;
-        }
-
-        /// <summary>
-        /// Статический конструктор класса.
-        /// </summary>
-        static ScheduleApi()
-        {
-            UseDataBase = false;
-
-            SelectUnsecure = false;
         }
         #endregion
 
@@ -74,7 +50,7 @@ namespace WebSchedule.Controllers.Schedule.Getter
                 BaseAddress = new Uri(String.Format("{0}{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.PathToDay))
             };
 
-            if (UseDataBase)
+            if (CookieFiles.UseDataBase)
             {
                 try
                 {
@@ -114,7 +90,7 @@ namespace WebSchedule.Controllers.Schedule.Getter
             client.BaseAddress = new Uri(String.Format("{0}{1}", client.BaseAddress?.OriginalString, ScheduleApiPaths.DbScheduleController));
 
             HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}&{2}{3}&{4}{5}", ScheduleApiPaths.DaySelector, DayInd,
-            ScheduleApiPaths.GroupSelector, GroupName, ScheduleApiPaths.SelectUnsecureSelector, SelectUnsecure)).Result;
+            ScheduleApiPaths.GroupSelector, GroupName, ScheduleApiPaths.SelectUnsecureSelector, CookieFiles.SelectUnsecure)).Result;
 
             if (message.IsSuccessStatusCode)
             {
@@ -136,7 +112,7 @@ namespace WebSchedule.Controllers.Schedule.Getter
             client.BaseAddress = new Uri(String.Format("{0}{1}", client.BaseAddress?.OriginalString, ScheduleApiPaths.AssetScheduleController));
 
             HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}&{2}{3}", ScheduleApiPaths.DaySelector, DayInd,
-ScheduleApiPaths.GroupSelector, GroupName)).Result;
+            ScheduleApiPaths.GroupSelector, GroupName)).Result;
 
             if (message.IsSuccessStatusCode)
             {

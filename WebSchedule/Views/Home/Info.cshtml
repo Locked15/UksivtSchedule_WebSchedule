@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
 
 @using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
 
 <html lang="ru">
 <head>
     <title>Информация — Расписание УКСИВТ</title>
-    @Extensions.ReadCookies(this)
+
+    @CookieFiles.ReadCookies(this)
 
     <style>
         a#infoLink:hover {
@@ -47,18 +49,22 @@
             </p>
 
             <ul>
+                @{
+                    String linksColor = CookieFiles.VisualPart.GetLinksColorClass();
+                }
+
                 <li>
-                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                    <a id="infoLink" class="nav-link" style="color: @linksColor"
                        href="mailto:almgal353@gmail.com">Почта автора</a>
                 </li>
 
                 <li>
-                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                    <a id="infoLink" class="nav-link" style="color: @linksColor"
                        href="mailto:dayradiation@gmail.com">Вторая почта автора</a>
                 </li>
 
                 <li>
-                    <a id="infoLink" class="nav-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "darkgray")"
+                    <a id="infoLink" class="nav-link" style="color: @linksColor"
                        href="https://vk.com/templateprog">ВК автора</a>
                 </li>
             </ul>

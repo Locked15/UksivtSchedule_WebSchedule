@@ -1,12 +1,15 @@
 ﻿<!DOCTYPE html>
 
-@model ScheduleModel;
+@model ScheduleModel
+
 @using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
 
 <html lang="ru">
 <head>
 	<title>Выбор дня: @Model.GroupName — Расписание УКСИВТ</title>
-	@Extensions.ReadCookies(this)
+
+	@CookieFiles.ReadCookies(this)
 </head>
 
 <body>

@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
 
 @using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
 
 <html lang="ru">
 <head>
     <title>Соглашение — Расписание УКСИВТ</title>
-    @Extensions.ReadCookies(this)
+
+    @CookieFiles.ReadCookies(this)
 
     <style>
         a.text-link {
@@ -123,7 +125,7 @@
 
         <h2 class="display-6">Обратная связь</h2>
         <p>
-            Если у Вас возникли вопросы, Вы можете связаться с автором по адресу: <a class="text-link" style="color: @(Extensions.UseDarkTheme ? "wheat" : "black")" href="mailto:almgal353@gmail.com">Google-почта</a>.
+            Если у Вас возникли вопросы, Вы можете связаться с автором по адресу: <a class="text-link" style="color: @CookieFiles.VisualPart.GetViewsMainColor()" href="mailto:almgal353@gmail.com">Google-почта</a>.
         </p>
         <p>
             Обращаем Ваше внимание, что использование электронной почты не всегда безопасно;

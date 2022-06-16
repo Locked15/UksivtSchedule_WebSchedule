@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
 
 @using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
 @using WebSchedule.Controllers.Schedule.Getter
 
 <html  lang="ru">
 <head>
 	<title>Настройки — Расписание УКСИВТ</title>
-	@Extensions.ReadCookies(this)
+
+	@CookieFiles.ReadCookies(this)
 </head>
 
-<body style="background-color: @(Extensions.UseDarkTheme ? "black" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
+<body style="color: @CookieFiles.VisualPart.GetViewsMainColor(); background-color: @CookieFiles.VisualPart.GetViewsBackgroundColor()">
 	<main class="accordion-body">
 		<h1 class="display-3" style="text-align:center">Настройки</h1>
 		<div style="font-family:'Georgia Pro'">
@@ -79,15 +81,18 @@
 		<div style="text-align:center;">
 			<form>
 				<label for="db" style="font-family:'Georgia Pro'; font-style:italic;">Использовать Базу Данных как источник? </label>
-				<input id="db" type="checkbox" name="useDb" checked=@ScheduleApi.UseDataBase />
+				<input id="db" type="checkbox" name="useDb" checked=@CookieFiles.UseDataBase />
 				<br /><br />
 
 				<label for="select" style="font-family:'Georgia Pro'; font-style:italic;">Выбирать 'небезопасные' значения? </label>
-				<input id="select" type="checkbox" name="selectUnsecure" checked=@ScheduleApi.SelectUnsecure />
+				<input id="select" type="checkbox" name="selectUnsecure" checked=@CookieFiles.SelectUnsecure />
 				<br /><br />
 
-				<label for="darkTheme" style="font-family:'Georgia Pro'; font-style:italic;">Использовать тёмную тему? </label>
-				<input id="darkTheme" type="checkbox" name="darkTheme" checked=@Extensions.UseDarkTheme />
+				<label for="currentTheme" style="font-family:'Georgia Pro'; font-style:italic;">Используемая тема: </label>
+				<select id="currentTheme" name="newTheme" size="1">
+					<option selected=@CookieFiles.CurrentTheme.Equals(Theme.Light)>Светлая</option>
+					<option selected=@CookieFiles.CurrentTheme.Equals(Theme.Dark)>Тёмная</option>
+				</select>
 				<br /><br />
 
 				<button type="submit" formmethod="post" asp-controller="Home" asp-action="SaveSettings" class="btn btn-secondary">Сохранить</button>

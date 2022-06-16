@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 
-@using WebSchedule.Controllers.Other;
-@using WebSchedule.Controllers.Schedule.Getter;
+@using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
+@using WebSchedule.Controllers.Schedule.Getter
 
 <html lang="ru">
 <head>
@@ -97,12 +98,17 @@
     </script>
 </head>
 
-<body style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black")">
+<body style="color: @CookieFiles.VisualPart.GetViewsMainColor(); background-color: @CookieFiles.VisualPart.GetViewsBackgroundColor();">
+    @{
+        String mainColor = CookieFiles.VisualPart.GetViewsMainColor();
+        String backgroundColor = CookieFiles.VisualPart.GetViewsBackgroundColor();
+    }
+
     <!-- Шапка сайта. -->
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @mainColor"
                    title="Главная страница">Расписание УКСИВТ</a>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display: block">
@@ -110,29 +116,29 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <!-- Информация. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
-                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" style="color: @mainColor"
                                title="Информация о сайте">Информация</a>
                         </li>
 
                         <!-- Настройки. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
-                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @(Extensions.UseDarkTheme ? "azure" : "black")"
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @mainColor"
                                title="Настройки сайта">Настройки</a>
                         </li>
 
                         <!-- Дополнительные ссылки. -->
                         <li class="nav-item dropdown side-links">
-                            <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black")" role="button"
+                            <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @mainColor" role="button"
                                href="#">Ссылки</a>
 
-                            <div class="dropdown-menu submenu" style="background-color: @(Extensions.UseDarkTheme ? "rgb(14,20,26)" : "white"); color: @(Extensions.UseDarkTheme ? "azure" : "black");
-							     border:solid; border-color: @(Extensions.UseDarkTheme ? "white" : "black")" aria-labelledby="links">
+                            <div class="dropdown-menu submenu" style="background-color: @backgroundColor; color: @mainColor;
+							     border:solid; border-color: @backgroundColor" aria-labelledby="links">
                                 <!-- Официальный сайт. -->
-                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @mainColor;
 								text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
 
                                 <!-- Группа в ВК. -->
-                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @(Extensions.UseDarkTheme ? "azure" : "black");
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @mainColor;
 								text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
                             </div>
                         </li>

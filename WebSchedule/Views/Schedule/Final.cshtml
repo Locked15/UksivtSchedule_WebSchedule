@@ -1,14 +1,18 @@
 ﻿<!DOCTYPE html>
 
-@model ScheduleModel;
-@using WebSchedule.Controllers.Other;
-@using WebSchedule.Controllers.Schedule.Getter;
-@using WebSchedule.Models.ScheduleElements;
+@model ScheduleModel
+
+@using WebSchedule.Controllers.Other
+@using WebSchedule.Controllers.Cookies
+@using WebSchedule.Controllers.Schedule.Getter
+
+@using WebSchedule.Models.ScheduleElements
 
 <html lang="ru">
 <head>
     <title>@Model.GroupName: @Model.DayId.GetDayByIndex() — Расписание УКСИВТ</title>
-    @Extensions.ReadCookies(this)
+
+    @CookieFiles.ReadCookies(this)
 </head>
 
 <body>
@@ -21,13 +25,11 @@
 
         <p>
             @{
-                String firstPart = (Extensions.UseDarkTheme ? "Тёмные строки" : "Белые строки") + " таблицы — элементы оригинального расписания.";
-                String secondPart = (Extensions.UseDarkTheme ? "Белые строки" : "Тёмные строки") + " таблицы — элементы замен.";
+                String firstPart = "Строки, соответствующие текущей теме — элементы оригинального расписания.";
+                String secondPart = "Голубые строки — элементы замен.";
 
                 @firstPart
-
                 <br />
-
                 @secondPart
             }
         </p>
@@ -50,8 +52,8 @@
 
         <!-- Для обеспечения возможности легкого парсинга страницы (ну а вдруг), проставляем везде ID. -->
         <h2 class="display-6" style="text-align:center">Расписание на @dateString</h2>
-        <table id="ScheduleTable" class="table table-bordered" style="font-family:'Georgia Pro'; margin-top:1%;">
-            <thead class="thead table-dark">
+        <table id="ScheduleTable" class="table table-bordered table-striped" style="font-family:'Georgia Pro'; margin-top:1%;">
+            <thead class="thead thead-dark">
                 <tr>
                     <th>№</th>
 
@@ -68,22 +70,17 @@
                 @foreach (Lesson lesson in schedule.Lessons)
                 {
                     String elementId = $"Lesson_{schedule.Lessons.IndexOf(lesson)}";
-                    String color = String.Empty;
+                    String colorClass = CookieFiles.VisualPart.GetScheduleElementsColor(lesson.LessonChanged);
 
-                    if (lesson.LessonChanged)
-                    {
-                        color = Extensions.UseDarkTheme ? "table-light" : "table-dark";
-                    }
+                    <tr id="@elementId" class="@colorClass">
+                        <th scope="row" class=@colorClass>@lesson.Number</th>
 
-                    <tr id="@elementId" class="@(Extensions.UseDarkTheme ? "table-dark" : "table-light")">
-                        <th scope="row" class=@color>@lesson.Number</th>
+                        <td class=@colorClass>@lesson.Name</td>
 
-                        <td class=@color>@lesson.Name</td>
+                        <td class=@colorClass>@lesson.Teacher</td>
+                        <td class=@colorClass>@lesson.Place</td>
 
-                        <td class=@color>@lesson.Teacher</td>
-                        <td class=@color>@lesson.Place</td>
-
-                        <td class=@color>
+                        <td class=@colorClass>
                             @{
                                 String[] times = lesson.Number.GetTime(schedule.Day.GetIndexByDay(), Model.GroupName).Split("\n");
                             }
@@ -100,7 +97,6 @@
             </tbody>
         </table>
 
-        // Сделать асинхронное диалоговое окно не получилось...
         if (changes.NewLessons.Count == 0)
         {
             String firstPartOfMessage = changes.ChangesFound ? "ВНИМАНИЕ: Замены для указанной группы не обнаружены!" :
@@ -118,7 +114,7 @@
         Int32 previousDay = Model.DayId - 1;
         Int32 nextDay = Model.DayId + 1;
 
-        // Атрибут "hidden" работает не на всех браузерах, поэтому пришлось делать так.
+        // Атрибут "hidden" работает не во всех браузерах, поэтому пришлось делать так.
         if (previousDay >= 0)
         {
             // Важно: Надо обработать вторник, потому что в его случае будет "перейти кО вторнику".
@@ -127,7 +123,7 @@
 
             <div style="text-align:center">
                 <p>
-                    <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
+                    <a class="btn @CookieFiles.VisualPart.GetButtonsColorClass()" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@previousDay>
                         &#9668; Перейти к@(previousDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9668;
                     </a>
                 </p>
@@ -136,7 +132,7 @@
 
         <div style="text-align:center">
             <p>
-                <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName=@Model.GroupName>
+                <a class="btn @CookieFiles.VisualPart.GetButtonsColorClass()" style="min-width:50%" asp-controller="Schedule" asp-action="Day" asp-route-groupName=@Model.GroupName>
                     &#9674; Вернуться к выбору дня &#9674;
                 </a>
             </p>
@@ -149,7 +145,7 @@
 
             <div style="text-align:center">
                 <p>
-                    <a class="btn @(Extensions.UseDarkTheme ? "btn-outline-light" : "btn-outline-dark")" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
+                    <a class="btn @CookieFiles.VisualPart.GetButtonsColorClass()" style="min-width:50%" asp-controller="Schedule" asp-action="Final" asp-route-groupName=@Model.GroupName asp-route-dayIndex=@nextDay>
                         &#9658; Перейти к@(nextDay == 1 ? "о" : String.Empty) @declinatedDay (@newDateString) &#9658;
                     </a>
                 </p>
