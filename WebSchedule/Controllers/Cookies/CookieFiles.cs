@@ -154,8 +154,8 @@ namespace WebSchedule.Controllers.Cookies
             {
                 return CurrentTheme switch
                 {
-                    Theme.Light => "btn-outline-light",
-                    Theme.Dark => "btn-outline-dark",
+                    Theme.Light => "btn-outline-dark",
+                    Theme.Dark => "btn-outline-light",
 
                     _ => "btn-outline-light"
                 };
@@ -177,11 +177,26 @@ namespace WebSchedule.Controllers.Cookies
             }
 
             /// <summary>
+            /// Функция для получения класса CSS заголовка таблицы с расписанием.
+            /// </summary>
+            /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
+            public static String GetScheduleTableHeadColorClass()
+            {
+                return CurrentTheme switch
+                {
+                    Theme.Light => "table-dark",
+                    Theme.Dark => "table-light",
+
+                    _ => "table-default"
+                };
+            }
+
+            /// <summary>
             /// Функция для получения класса CSS элементов расписания.
             /// </summary>
             /// <param name="changed">Изменялась ли указанная пара. Значение по умолчанию: False.</param>
             /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
-            public static String GetScheduleElementsColor(Bool changed = false)
+            public static String GetScheduleElementsColorClass(Bool changed = false)
             {
                 if (changed)
                 {
