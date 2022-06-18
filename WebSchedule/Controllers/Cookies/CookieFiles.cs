@@ -139,10 +139,10 @@ namespace WebSchedule.Controllers.Cookies
             {
                 return CurrentTheme switch
                 {
-                    Theme.Light => "azure",
+                    Theme.Light => "white",
                     Theme.Dark => String.Format(PagesColorTemplate, 14, 20, 26),
 
-                    _ => "white"
+                    _ => "azure"
                 };
             }
 
