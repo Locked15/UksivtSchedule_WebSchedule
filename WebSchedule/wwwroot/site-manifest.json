@@ -1,7 +1,8 @@
 {
   "short_name": "Расписание",
   "name": "Расписание УКСИВТ",
-  "background_color": "#fffff",
+  "background_color": "azure",
+  "orientation": "portrait-primary",
   "display": "standalone",
   "scope": "/",
   "description": "Сайт для получения расписания колледжа УКСИВТ с учетом замен.",

@@ -16,6 +16,7 @@
             {
                 Theme.Light => "Светлая",
                 Theme.Dark => "Тёмная",
+                Theme.Gray => "Серая",
 
                 _ => "???"
             };
@@ -32,6 +33,7 @@
             {
                 "light" or "светлая" => Theme.Light,
                 "dark" or "тёмная" or "темная" => Theme.Dark,
+                "gray" or "серая" => Theme.Gray,
 
                 _ => Theme.Light,
             };
@@ -51,6 +53,11 @@
         /// <summary>
         /// Темная тема.
         /// </summary>
-        Dark = 1
+        Dark = 1,
+
+        /// <summary>
+        /// Серая тема.
+        /// </summary>
+        Gray = 2
     }
 }

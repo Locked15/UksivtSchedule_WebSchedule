@@ -8,6 +8,7 @@ namespace WebSchedule.Controllers.Cookies
     public static class CookieFiles
     {
         #region Область: Свойства, связанные с Cookie-файлами.
+
         /// <summary>
         /// Свойство, отвечающее за то, будут ли данные вытягиваться из БД или ассетов.
         /// </summary>
@@ -34,6 +35,7 @@ namespace WebSchedule.Controllers.Cookies
         #endregion
 
         #region Область: Функции.
+
         /// <summary>
         /// Статический метод, позволяющий прочитать Cookie-файлы прямо в коде из отправленного контекста.
         /// <br/>
@@ -102,6 +104,8 @@ namespace WebSchedule.Controllers.Cookies
         /// </summary>
         public static class VisualPart
         {
+            #region Подобласть: Константы для шаблонизации.
+
             /// <summary>
             /// Содержит шаблон для создания цветов, для указания оных в стилях элементов страницы.
             /// <br/> <br/>
@@ -112,21 +116,57 @@ namespace WebSchedule.Controllers.Cookies
             ///     <item>Синий.</item>
             /// </list>
             /// </summary>
-            private const String PagesColorTemplate = "rgb({0}, {1}, {2})";
+            private const String RgbColorTemplate = "rgb({0}, {1}, {2})";
+
+            /// <summary>
+            /// Содержит шаблон для создания цветов с поддержкой альфа-канала (прозрачности), для указания оных в стилях элементов.
+            /// </summary>
+            private const String RgbaColorTemplate = "rgba({0}, {1}, {2}, {3})";
+            #endregion
+
+            #region Подобласть: Цвета текста.
+
+            public static String GetTextColorForHeaders()
+            {
+                return CurrentTheme switch
+                {
+                    Theme.Light => "black",
+                    Theme.Dark => "azure",
+                    Theme.Gray => "white",
+
+                    _ => "white",
+                };
+            }
 
             /// <summary>
             /// Функция для получения главного цвета указанной темы. <br />
             /// Главный цвет отвечает за цвет текста.
             /// </summary>
             /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
-            public static String GetViewsMainColor()
+            public static String GetTextColorForPlains()
             {
                 return CurrentTheme switch
                 {
                     Theme.Light => "black",
                     Theme.Dark => "azure",
+                    Theme.Gray => String.Format(RgbColorTemplate, 180, 180, 180),
 
                     _ => "white",
+                };
+            }
+            #endregion
+
+            #region Подобласть: Задние цвета.
+
+            public static String GetViewsHeaderBackgroundColor()
+            {
+                return CurrentTheme switch
+                {
+                    Theme.Light => "white",
+                    Theme.Dark => String.Format(RgbColorTemplate, 14, 20, 26),
+                    Theme.Gray => String.Format(RgbColorTemplate, 32, 32, 32),
+
+                    _ => "azure"
                 };
             }
 
@@ -135,16 +175,32 @@ namespace WebSchedule.Controllers.Cookies
             /// Вторичный цвет отвечает за цвет заднего фона.
             /// </summary>
             /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
-            public static String GetViewsBackgroundColor()
+            public static String GetViewsContentBackgroundColor()
             {
                 return CurrentTheme switch
                 {
                     Theme.Light => "white",
-                    Theme.Dark => String.Format(PagesColorTemplate, 14, 20, 26),
+                    Theme.Dark => String.Format(RgbColorTemplate, 14, 20, 26),
+                    Theme.Gray => String.Format(RgbColorTemplate, 24, 24, 24),
 
                     _ => "azure"
                 };
             }
+
+            public static String GetViewsFooterBackgroundColor()
+            {
+                return CurrentTheme switch
+                {
+                    Theme.Light => "white",
+                    Theme.Dark => String.Format(RgbColorTemplate, 14, 20, 26),
+                    Theme.Gray => String.Format(RgbColorTemplate, 32, 32, 32),
+
+                    _ => "azure"
+                };
+            }
+            #endregion
+
+            #region Подобласть: Цвета активных элементов.
 
             /// <summary>
             /// Функция для получения соответствующего текущей теме, класса CSS для кнопок.
@@ -155,7 +211,7 @@ namespace WebSchedule.Controllers.Cookies
                 return CurrentTheme switch
                 {
                     Theme.Light => "btn-outline-dark",
-                    Theme.Dark => "btn-outline-light",
+                    Theme.Dark or Theme.Gray => "btn-outline-light",
 
                     _ => "btn-outline-light"
                 };
@@ -171,10 +227,26 @@ namespace WebSchedule.Controllers.Cookies
                 {
                     Theme.Light => "darkgray",
                     Theme.Dark => "wheat",
+                    Theme.Gray => String.Format(RgbaColorTemplate, 35, 125, 232, 100),
 
                     _ => "white"
                 };
             }
+
+            public static String GetSearchPanelBackgroundColor()
+            {
+                return CurrentTheme switch
+                {
+                    Theme.Light => "white",
+                    Theme.Dark => String.Format(RgbColorTemplate, 14, 20, 26),
+                    Theme.Gray => String.Format(RgbColorTemplate, 18, 18, 18),
+
+                    _ => "azure"
+                };
+            }
+            #endregion
+
+            #region Подобласть: Цвета расписания.
 
             /// <summary>
             /// Функция для получения класса CSS заголовка таблицы с расписанием.
@@ -214,6 +286,7 @@ namespace WebSchedule.Controllers.Cookies
                     };
                 }
             }
+            #endregion
         }
     }
 }

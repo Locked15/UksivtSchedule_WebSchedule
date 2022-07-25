@@ -98,17 +98,19 @@
     </script>
 </head>
 
-<body style="color: @CookieFiles.VisualPart.GetViewsMainColor(); background-color: @CookieFiles.VisualPart.GetViewsBackgroundColor();">
+<body style="color: @CookieFiles.VisualPart.GetTextColorForPlains(); background-color: @CookieFiles.VisualPart.GetViewsContentBackgroundColor();">
     @{
-        String mainColor = CookieFiles.VisualPart.GetViewsMainColor();
-        String backgroundColor = CookieFiles.VisualPart.GetViewsBackgroundColor();
+        String textColor = CookieFiles.VisualPart.GetTextColorForPlains();
+        String headerColor = CookieFiles.VisualPart.GetTextColorForHeaders();
+        String backgroundColor = CookieFiles.VisualPart.GetViewsContentBackgroundColor();
     }
 
     <!-- Шапка сайта. -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="background-color: @CookieFiles.VisualPart.GetViewsHeaderBackgroundColor();
+                                                                                                       color: @CookieFiles.VisualPart.GetTextColorForHeaders()">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @mainColor"
+                <a class="navbar-brand" asp-controller="Home" asp-action="MainPage" style="color: @headerColor"
                    title="Главная страница">Расписание УКСИВТ</a>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display: block">
@@ -116,30 +118,30 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <!-- Информация. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
-                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" style="color: @mainColor"
-                               title="Информация о сайте">Информация</a>
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" title="Информация о сайте"
+                               style="color: @headerColor">Информация</a>
                         </li>
 
                         <!-- Настройки. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
-                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" style="color: @mainColor"
-                               title="Настройки сайта">Настройки</a>
+                            <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" title="Настройки сайта"
+                               style="color: @headerColor">Настройки</a>
                         </li>
 
                         <!-- Дополнительные ссылки. -->
                         <li class="nav-item dropdown side-links">
-                            <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @mainColor" role="button"
+                            <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @headerColor;" role="button"
                                href="#">Ссылки</a>
 
-                            <div class="dropdown-menu submenu" style="background-color: @backgroundColor; color: @mainColor;
-							     border:solid; border-color: @mainColor" aria-labelledby="links">
+                            <div class="dropdown-menu submenu" style="background-color: @backgroundColor; border:solid;
+                                                                      border-color: @textColor;" aria-labelledby="links">
                                 <!-- Официальный сайт. -->
-                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @mainColor;
-								text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @headerColor;
+								                                           text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
 
                                 <!-- Группа в ВК. -->
-                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @mainColor;
-								text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
+                                <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @headerColor;
+								                                           text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
                             </div>
                         </li>
                     </ul>
@@ -147,7 +149,7 @@
                     <!-- Правая часть. -->
                     <ul class="time-view navbar-nav">
                         <!-- Вывод данных о парах. -->
-                        <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px;">
+                        <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px; color: @headerColor;">
                             <div id="CurrentLessonDescription" title="Текущее событие" style="font-size:1.25em"> </div>
                             <div id="CurrentLessonEndEstimatedTime" title="Оставшееся время" style="font-size:1.25em"> </div>
                         </li>
@@ -159,26 +161,24 @@
 
     <!-- Рендер основного содержимого страницы. -->
     <div id="MainBlock" class="container content">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3" style="background-color: @CookieFiles.VisualPart.GetViewsContentBackgroundColor()">
             @RenderBody()
 
-            <!-- Предупреждение о куках. -->
             <script src="~/js/smart-cookies.js"></script>
         </main>
+
+        <div id="Divider" style="margin-top:15%"></div>
     </div>
 
-    <!-- Отступ для футера со значениями по умолчанию. -->
-    <p id="Divider" style="margin-top:15%"></p>
-
     <!-- Подвал сайта. -->
-    <footer id="FooterBlock" class="border-top footer text-muted">
+    <footer id="FooterBlock" class="border-top footer text-muted" style="background-color: @CookieFiles.VisualPart.GetViewsFooterBackgroundColor()">
         <div class="container">
-            <div class="float-lg-start" style="display:inline-block">
-                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET</a>.<br />
+            <div class="float-lg-start" style="display:inline-block; color: @headerColor;">
+                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET Core</a>.<br />
                 2021 — 2022.
             </div>
 
-            <div class="float-lg-end" style="display:inline-block">
+            <div class="float-lg-end" style="display:inline-block; color: @headerColor; float: inline-end;">
                 <p>Создано: <a href="https://github.com/Locked15" style="font-style:italic;">Locked15</a>.</p>
             </div>
         </div>

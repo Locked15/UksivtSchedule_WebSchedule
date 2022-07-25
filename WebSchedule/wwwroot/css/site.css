@@ -1,14 +1,5 @@
 html {
     font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-html {
     position: relative;
     min-height: 100%;
 }
@@ -63,6 +54,32 @@ button.accept-policy {
     white-space: nowrap;
     line-height: 60px;
 }
+
+/* Область смены размера шрифтов от размера экрана. */
+@media (min-width: 768px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    html {
+        font-size: 1.15rem;
+    }
+}
+
+@media (min-width: 2120px) {
+    html {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 3080px) {
+    html {
+        font-size: 1.40rem;
+    }
+}
+/* Конец области. */
 
 /* Событие наведения на дополнительные ссылки для ПК. */
 @media (min-width: 681px) {

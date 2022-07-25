@@ -11,9 +11,9 @@
 	@CookieFiles.ReadCookies(this)
 </head>
 
-<body style="color: @CookieFiles.VisualPart.GetViewsMainColor(); background-color: @CookieFiles.VisualPart.GetViewsBackgroundColor();">
+<body style="background-color: @CookieFiles.VisualPart.GetViewsContentBackgroundColor()">
 	<main class="accordion-body">
-		<h1 class="display-3" style="text-align:center">Настройки</h1>
+		<h1 class="display-3" style="text-align:center; color: @CookieFiles.VisualPart.GetTextColorForHeaders();">Настройки</h1>
 		<div style="font-family:'Georgia Pro'">
 			<p>
 				На данной странице можно настроить опции выбора расписания. <br />
@@ -21,7 +21,7 @@
 			</p>
 		</div>
 
-		<h2>Использовать Базу Данных как источник</h2>
+		<h2 style="color: @CookieFiles.VisualPart.GetTextColorForHeaders()">Использовать Базу Данных как источник</h2>
 		<div style="font-family:'Georgia Pro'">
 			<p>
 				API, используемая данной страницей способна получать расписание двумя путями:
@@ -39,7 +39,7 @@
 			</p>
 		</div>
 
-		<h2>Выбирать небезопасные значения</h2>
+		<h2 style="color: @CookieFiles.VisualPart.GetTextColorForHeaders()">Выбирать небезопасные значения</h2>
 		<div style="font-family:'Georgia Pro'">
 			<p>
 				В случае, если пользователь выбирает в качестве источника базу данных, то проявляется одна небольшая проблема.<br />
@@ -65,14 +65,14 @@
 			</ul>
 		</div>
 
-		<h2>Используемая тема</h2>
+		<h2 style="color: @CookieFiles.VisualPart.GetTextColorForHeaders()">Используемая тема</h2>
 		<div style="font-family:'Georgia Pro'">
 			<p>
 				После сохранения настроек тема сайта будет изменена на выбранную.
 			</p>
 		</div>
 
-		<h2 class="display-6" style="text-align:center">Настройка</h2>
+		<h2 class="display-6" style="text-align:center; color: @CookieFiles.VisualPart.GetTextColorForHeaders()">Доступные настройки</h2>
 		<div style="font-family:'Georgia Pro'; text-align:center;">
 			Чтобы включить ту или иную опцию, отметьте её. <br />
 			Когда настройка будет завершена, нажмите на кнопку, чтобы сохранить настройки.
@@ -92,6 +92,7 @@
 				<select id="currentTheme" name="newTheme" size="1">
 					<option selected=@CookieFiles.CurrentTheme.Equals(Theme.Light)>Светлая</option>
 					<option selected=@CookieFiles.CurrentTheme.Equals(Theme.Dark)>Тёмная</option>
+					<option selected=@CookieFiles.CurrentTheme.Equals(Theme.Gray)>Серая</option>
 				</select>
 				<br /><br />
 
