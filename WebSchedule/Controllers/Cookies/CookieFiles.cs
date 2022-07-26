@@ -126,6 +126,10 @@ namespace WebSchedule.Controllers.Cookies
 
             #region Подобласть: Цвета текста.
 
+            /// <summary>
+            /// Функция для получения цвета текста заголовков.
+            /// </summary>
+            /// <returns>Строковое представление цвета, которое можно указать в стиле CSS.</returns>
             public static String GetTextColorForHeaders()
             {
                 return CurrentTheme switch
@@ -139,10 +143,9 @@ namespace WebSchedule.Controllers.Cookies
             }
 
             /// <summary>
-            /// Функция для получения главного цвета указанной темы. <br />
-            /// Главный цвет отвечает за цвет текста.
+            /// Функция для получения цвета обычного текста.
             /// </summary>
-            /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
+            /// <returns>Строковое представление цвета, которое можно указать в стиле CSS.</returns>
             public static String GetTextColorForPlains()
             {
                 return CurrentTheme switch
@@ -158,6 +161,10 @@ namespace WebSchedule.Controllers.Cookies
 
             #region Подобласть: Задние цвета.
 
+            /// <summary>
+            /// Функция для получения цвета заднего фона верхней панели навигации.
+            /// </summary>
+            /// <returns>Строковое представление цвета, которое можно отправить в стиль CSS.</returns>
             public static String GetViewsHeaderBackgroundColor()
             {
                 return CurrentTheme switch
@@ -171,10 +178,9 @@ namespace WebSchedule.Controllers.Cookies
             }
 
             /// <summary>
-            /// Функция для получения вторичного цвета указанной темы. <br />
-            /// Вторичный цвет отвечает за цвет заднего фона.
+            /// Функция для получения цвета заднего фона основного содержимого.
             /// </summary>
-            /// <returns>Строковое представление стиля, которое будет использоваться при построении модели DOM.</returns>
+            /// <returns>Строковое представление цвета, которое можно отправить в стиль CSS.</returns>
             public static String GetViewsContentBackgroundColor()
             {
                 return CurrentTheme switch
@@ -187,6 +193,10 @@ namespace WebSchedule.Controllers.Cookies
                 };
             }
 
+            /// <summary>
+            /// Функция для получения цвета заднего фона нижней панели.
+            /// </summary>
+            /// <returns>Строковое представление цвета, которое можно отправить в стиль CSS.</returns>
             public static String GetViewsFooterBackgroundColor()
             {
                 return CurrentTheme switch
@@ -233,6 +243,10 @@ namespace WebSchedule.Controllers.Cookies
                 };
             }
 
+            /// <summary>
+            /// Функция для получения цвета заднего фона строки поиска.
+            /// </summary>
+            /// <returns>Строковое представление цвета, которое можно отправить в стиль CSS.</returns>
             public static String GetSearchPanelBackgroundColor()
             {
                 return CurrentTheme switch
