@@ -23,6 +23,10 @@
 		<RepositoryUrl>https://github.com/Locked15/WebSchedule</RepositoryUrl>
 
 		<PackageTags>schedule; uksivt; college; webschedule; web schedule </PackageTags>
+
+		<ApplicationInsightsResourceId>/subscriptions/c0502672-d9b2-4f69-a607-b7300fa5fb3e/resourceGroups/Subscriprion/providers/microsoft.insights/components/WebScheduleInsight</ApplicationInsightsResourceId>
+
+		<UserSecretsId>03a9c274-dc74-4043-8f08-8816b42ff11b</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,6 +38,10 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
