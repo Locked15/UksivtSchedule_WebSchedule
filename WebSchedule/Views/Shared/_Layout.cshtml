@@ -4,13 +4,25 @@
 @using WebSchedule.Controllers.Cookies
 @using WebSchedule.Controllers.Schedule.Getter
 
-<html lang="ru">
+<html lang="ru" xmlns:og="http://ogp.me/ns#">
 <head>
     <meta charset="utf-8" />
+
+    <!-- Общие мета-теги. -->
     <meta name="robots" content="follow" />
     <meta name="description" content="Сайт расписания УКСИВТа, позволяющий получать актуальные данные о заменах, и основном расписании для любой группы колледжа." />
     <meta name="keywords" content="Расписание, Schedule, УКСИВТ, UKSIVT, Замены, Changes, Replacements, ASP.NET, ASP.NET Core, Web Schedule" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Специализированные мета-теги для социальных сетей. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Расписание УКСиВТ" />
+    <meta property="og:image" content="~/icons/icon_256px.png" />
+    <meta property="og:image:width" content="256" />
+    <meta property="og:image:height" content="256" />
+    <meta property="og:description" content="Лёгкое и быстрое получение расписания для колледжа УКСиВТ." />
+    <meta property="og:url" content="https://webschedule.azurewebsites.net" />
+    <meta property="og:site_name" content="WebSchedule" />
 
     @await RenderSectionAsync("Scripts", required: false)
 
