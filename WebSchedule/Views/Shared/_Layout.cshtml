@@ -26,83 +26,19 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
+    <script src="~/js/layout/layout_scripts.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/widgets/lesson-info-widget.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/lesson-info-widget.js"></script>
 
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/general/general.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="manifest" href="~/site-manifest.json" />
 
-    <style>
-        a#hoverableLink:hover {
-            font-size: 125%;
-            padding-bottom: 3px;
-            padding-left: 2px;
-            padding-right: 2px;
-            border-bottom: 2px solid;
-        }
-    </style>
-
     <script type="text/javascript">
-        /**
-         * Функция для вставки отстутпа от "футера" страницы, чтобы контент не попадал за него.
-         */
-        function updateMarginSpace()
-        {
-            var main = document.getElementById("Divider");
-            var footer = document.getElementById("FooterBlock");
-
-            // Чтобы футер не подходил очень близко к контенту, увеличиваем отступ.
-            main.style.marginTop = footer.clientHeight + 50 + 'px';
-        }
-
-        /**
-         * Обновляет данные о текущей паре и времени её завершения.
-         */
-        function insertLessonsInfo()
-        {
-            var firstElement = document.getElementById("CurrentLessonDescription");
-            var secondElement = document.getElementById("CurrentLessonEndEstimatedTime");
-
-            updateInfoAboutLessons(firstElement, secondElement);
-        }
-
-        /**
-         * Функция, дополняющая элемент с дополнительными ссылками в зависимости от ширины экрана.
-         */
-        function updateLinksAttributes()
-        {
-            var element = document.getElementById("links");
-
-            if (window.innerWidth > 680)
-            {
-                element.removeAttribute("data-bs-toggle");
-                element.removeAttribute("aria-expanded");
-            }
-
-            else
-            {
-                element.setAttribute("data-bs-toggle", "dropdown");
-                element.setAttribute("aria-expanded", "false");
-            }
-        }
-
-        /**
-         * Событие, происходящее при загрузке страницы.
-         * Вручную вызывает функцию вставки даты и времени, затем устанавливает её на интервал.
-         *
-         * Также устанавливает отступ от нижней границы ("футера").
-         */
-        function onLoad()
-        {
-            updateMarginSpace();
-            insertLessonsInfo();
-            updateLinksAttributes();
-
-            setInterval(insertLessonsInfo, 60000);
-        }
+        // Весь код был вынесен в отдельный файл.
 
         window.addEventListener('load', onLoad);
         window.addEventListener('resize', updateMarginSpace);
@@ -126,21 +62,17 @@
                    title="Главная страница">Расписание УКСИВТ</a>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-start" style="display: block">
-                    <!-- Левая часть. -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <!-- Информация. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
                             <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Info" title="Информация о сайте"
                                style="color: @headerColor">Информация</a>
                         </li>
 
-                        <!-- Настройки. -->
                         <li class="nav-item" style="font-family:'Georgia Pro'">
                             <a id="hoverableLink" class="nav-link" asp-controller="Home" asp-action="Settings" title="Настройки сайта"
                                style="color: @headerColor">Настройки</a>
                         </li>
 
-                        <!-- Дополнительные ссылки. -->
                         <li class="nav-item dropdown side-links">
                             <a id="links" class="nav-link dropdown-toggle" style="font-family:'Georgia Pro'; color: @headerColor;" role="button"
                                href="#">Ссылки</a>
@@ -149,21 +81,20 @@
                                                                       border-color: @textColor;" aria-labelledby="links">
                                 <!-- Официальный сайт. -->
                                 <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @headerColor;
-								                                           text-align:center;" href="https://www.uksivt.ru/">Официальный сайт</a>
+								                                           text-align: center;" href="https://www.uksivt.ru/">Официальный сайт</a>
 
                                 <!-- Группа в ВК. -->
                                 <a class="nav-link" target="_blank" style="font-family:'Georgia Pro'; color: @headerColor;
-								                                           text-align:center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
+								                                           text-align: center;" href="https://vk.com/uksivt_gbpou">Группа VK</a>
                             </div>
                         </li>
                     </ul>
 
-                    <!-- Правая часть. -->
                     <ul class="time-view navbar-nav">
                         <!-- Вывод данных о парах. -->
-                        <li class="nav-item" style="font-family:'Georgia Pro'; text-align:center; margin-left:10px; color: @headerColor;">
-                            <div id="CurrentLessonDescription" title="Текущее событие" style="font-size:1.25em"> </div>
-                            <div id="CurrentLessonEndEstimatedTime" title="Оставшееся время" style="font-size:1.25em"> </div>
+                        <li class="nav-item" style="font-family: 'Georgia Pro'; text-align: center; margin-left: 10px; color: @headerColor;">
+                            <div id="current-lesson-description" title="Текущее событие" style="font-size: 1.25em"> </div>
+                            <div id="current-lesson-end-estimated-time" title="Оставшееся время" style="font-size: 1.25em"> </div>
                         </li>
                     </ul>
                 </div>
@@ -176,22 +107,23 @@
         <main role="main" class="pb-3" style="background-color: @CookieFiles.VisualPart.GetViewsContentBackgroundColor()">
             @RenderBody()
 
-            <script src="~/js/smart-cookies.js"></script>
+            <script src="~/js/widgets/smart-cookies.js"></script>
         </main>
 
-        <div id="Divider" style="margin-top:15%"></div>
+        <div id="divider" style="margin-top:15%"></div>
     </div>
 
     <!-- Подвал сайта. -->
-    <footer id="FooterBlock" class="border-top footer text-muted" style="background-color: @CookieFiles.VisualPart.GetViewsFooterBackgroundColor()">
-        <div class="container">
-            <div class="float-lg-start" style="display:inline-block; color: @headerColor;">
-                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic;">ASP.NET Core</a>.<br />
-                2021 — 2022.
+    <footer id="footer-block" class="border-top text-muted footer" style="background-color: @CookieFiles.VisualPart.GetViewsFooterBackgroundColor()">
+        <div>
+            <div style="color: @headerColor">
+                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic">ASP.NET Core</a>.
             </div>
 
-            <div class="float-lg-end" style="display:inline-block; color: @headerColor; float: inline-end;">
-                <p>Создано: <a href="https://github.com/Locked15" style="font-style:italic;">Locked15</a>.</p>
+            <div style="color: @headerColor">
+                <p>2021 — 2022.</p>
+                
+                <p>Создано: <a href="https://github.com/Locked15" style="font-style:italic">Locked15</a>.</p>
             </div>
         </div>
     </footer>
