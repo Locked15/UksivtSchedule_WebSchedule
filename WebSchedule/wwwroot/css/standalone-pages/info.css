@@ -1,0 +1,6 @@
+﻿/* Выделение ссылок при наведении на них. */
+a#infoLink:hover {
+    background-size: 100% 2px;
+    font-size: 125%;
+    text-decoration: underline;
+}

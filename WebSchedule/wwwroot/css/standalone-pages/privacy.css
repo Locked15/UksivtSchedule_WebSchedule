@@ -1,0 +1,10 @@
+﻿
+a.text-link {
+    text-decoration: none;
+}
+
+    a.text-link:hover {
+        background-size: 100% 2px;
+        text-decoration: underline;
+        font-size: 115%;
+    }

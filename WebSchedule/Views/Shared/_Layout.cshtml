@@ -26,15 +26,19 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
+    <!-- Скрипты. -->
     <script src="~/js/layout/layout_scripts.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/widgets/lesson-info-widget.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Стили сайта. -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/general/general.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Манифест сайта. -->
     <link rel="manifest" href="~/site-manifest.json" />
 
     <script type="text/javascript">
