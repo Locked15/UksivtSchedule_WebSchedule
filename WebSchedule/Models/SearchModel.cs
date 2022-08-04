@@ -58,7 +58,7 @@ namespace WebSchedule.Models
         private String? NormalizeSearchRequest(String baseRequest)
         {
             String normalizedValue = baseRequest?.ToLower() ?? String.Empty;
-            normalizedValue = normalizedValue.ReplaceAll(String.Empty, "-", "—", "_");
+            normalizedValue = normalizedValue.ReplaceAll(String.Empty, "-", "—", "_", " ");
 
             if (normalizedValue.Equals("19п5"))
             {
@@ -78,7 +78,7 @@ namespace WebSchedule.Models
             options = HierarchyModel.AllGroups.FindAll(group =>
             {
                 group = group.ToLower();
-                group = group.ReplaceAll(String.Empty, "-", "—", "_");
+                group = group.ReplaceAll(String.Empty, "-", "—", "_", " ");
 
                 return group.Contains(NormalRequest ?? String.Empty);
             });
