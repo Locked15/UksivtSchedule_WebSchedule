@@ -44,5 +44,9 @@
 	  <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\css\standalone-pages\" />
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 </Project>

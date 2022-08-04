@@ -33,7 +33,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Стили сайта. -->
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/general/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebSchedule.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/general/general.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -121,13 +121,13 @@
     <footer id="footer-block" class="border-top text-muted footer" style="background-color: @CookieFiles.VisualPart.GetViewsFooterBackgroundColor()">
         <div>
             <div style="color: @headerColor">
-                Основано на технологии <a href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic">ASP.NET Core</a>.
+                Основано на технологии <a class="important-link" href="https://dotnet.microsoft.com/en-us/apps/aspnet" style="font-style:italic; text-decoration: none;">ASP.NET Core</a>.
             </div>
 
             <div style="color: @headerColor">
                 <p>2021 — 2022.</p>
-                
-                <p>Создано: <a href="https://github.com/Locked15" style="font-style:italic">Locked15</a>.</p>
+
+                <p>Создано: <a class="important-link" href="https://github.com/Locked15" style="font-style:italic; text-decoration: none;">Locked15</a>.</p>
             </div>
         </div>
     </footer>
