@@ -88,36 +88,19 @@ namespace WebSchedule.Controllers
         /// <returns>Главная страница.</returns>
         public IActionResult SaveSettings(String useDb, String selectUnsecure, String newTheme)
         {
-            IRequestCookieCollection? cookies = HttpContext.Request.Cookies;
             CookieFiles.SetCookies(useDb == "on", selectUnsecure == "on", ThemeConverter.FromString(newTheme));
 
-            #region Подобласть: Удаление повторяющихся куков.
-            if (cookies.ContainsKey("UseDataBase"))
-            {
-                HttpContext.Response.Cookies.Delete("UseDataBase");
-            }
-
-            if (cookies.ContainsKey("SelectUnsecure"))
-            {
-                HttpContext.Response.Cookies.Delete("SelectUnsecure");
-            }
-
-            if (cookies.ContainsKey("CurrentTheme"))
-            {
-                HttpContext.Response.Cookies.Delete("CurrentTheme");
-            }
-            #endregion
-
-            #region Подобласть: Установка новых куков.
             HttpContext.Response.Cookies.Append("UseDataBase", CookieFiles.UseDataBase.ToString(), 
-                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3), 
+                                                                      HttpOnly = true });
 
             HttpContext.Response.Cookies.Append("SelectUnsecure", CookieFiles.SelectUnsecure.ToString(), 
-                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3), 
+                                                                      HttpOnly = true });
 
             HttpContext.Response.Cookies.Append("CurrentTheme", CookieFiles.CurrentTheme.ToString(), 
-                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3) });
-            #endregion
+                                                new CookieOptions() { Expires = DateTime.Now.AddMonths(3), 
+                                                                      HttpOnly = true });
 
             return View("MainPage");
         }
