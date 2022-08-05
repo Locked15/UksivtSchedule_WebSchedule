@@ -270,7 +270,7 @@ namespace WebSchedule.Controllers.Cookies
             {
                 return CurrentTheme switch
                 {
-                    Theme.Light => "table-dark",
+                    Theme.Light or Theme.Gray => "table-dark",
                     Theme.Dark => "table-light",
 
                     _ => "table-default"
@@ -294,7 +294,7 @@ namespace WebSchedule.Controllers.Cookies
                     return CurrentTheme switch
                     {
                         Theme.Light => "table-light",
-                        Theme.Dark => "table-dark",
+                        Theme.Dark or Theme.Gray => "table-dark",
 
                         _ => "table-default"
                     };
