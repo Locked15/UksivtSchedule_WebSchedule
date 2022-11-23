@@ -91,6 +91,7 @@ namespace WebSchedule.Models
 
                 using (StreamWriter sw1 = new(filePath, false, System.Text.Encoding.Default))
                 {
+                    AllGroups = AllGroups.Distinct().ToList();
                     String value = JsonSerializer.Serialize(AllGroups, new JsonSerializerOptions { WriteIndented = true });
 
                     sw1.Write(value);
