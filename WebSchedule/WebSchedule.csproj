@@ -41,6 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Controllers\Other\Data\" />
 	  <Folder Include="wwwroot\css\standalone-pages\" />
 	</ItemGroup>
 
