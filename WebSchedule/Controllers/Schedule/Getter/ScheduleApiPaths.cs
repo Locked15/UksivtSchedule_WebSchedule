@@ -84,14 +84,14 @@
             #region Область: Инициализация базовых значений.
             BaseUrl = "http://uksivtscheduleapi.azurewebsites.net";
 
-            PathToDay = "/api/day/";
+            PathToDay = "/api/";
             #endregion
 
             #region Область: Инициализация контроллеров.
-            AssetScheduleController = "scheduledayasset";
+            AssetScheduleController = "schedule/day";
             DbScheduleController = "scheduledatabaseday";
 
-            ChangesController = "changesday";
+            ChangesController = "changes/day";
 
             FolderController = "/api/folders";
             SubFolderController = "api/subFolders";

@@ -30,10 +30,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Resource Include="Resources" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <None Include="wwwroot\icons\icon_128px.png">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
