@@ -75,26 +75,25 @@ namespace WebSchedule.Models
             // Чтобы ускорить работу сайта, используем файл:
             if (File.Exists(filePath))
             {
-                AllGroups = JsonSerializer.Deserialize<List<String>>(File.ReadAllText(filePath));
+                AllGroups = JsonSerializer.Deserialize<List<String>>(File.ReadAllText(filePath)) ?? Enumerable.Empty<String>().ToList();
             }
 
             // В ином случае, будем считывать данные из API:
             else
             {
-                foreach (String branch in ScheduleApi.GetBranches())
-                {
-                    foreach (String direction in ScheduleApi.GetSubFolders(branch))
-                    {
-                        AllGroups.AddRange(ScheduleApi.GetGroups(branch, direction));
-                    }
-                }
+                AllGroups = ScheduleApi.GetGroups();
 
-                using (StreamWriter sw1 = new(filePath, false, System.Text.Encoding.Default))
-                {
-                    AllGroups = AllGroups.Distinct().ToList();
-                    String value = JsonSerializer.Serialize(AllGroups, new JsonSerializerOptions { WriteIndented = true });
+                AllGroups = AllGroups.ToList();
+                String value = JsonSerializer.Serialize(AllGroups, new JsonSerializerOptions { WriteIndented = true });
 
+                try
+                {
+                    using StreamWriter sw1 = new(filePath, false, System.Text.Encoding.Default);
                     sw1.Write(value);
+                }
+                catch (Exception ex)
+                {
+                    // Log it.
                 }
             }
         }

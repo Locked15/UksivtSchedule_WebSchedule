@@ -34,16 +34,6 @@
         internal static readonly String ChangesController;
 
         /// <summary>
-        /// Статическое поле, содержащее URL путь к контроллеру отделений.
-        /// </summary>
-        internal static readonly String FolderController;
-
-        /// <summary>
-        /// Статическое поле, содержащее URL путь к контроллеру направлений обучения.
-        /// </summary>
-        internal static readonly String SubFolderController;
-
-        /// <summary>
         /// Статическое поле, содержащее URL путь к контроллеру групп.
         /// </summary>
         internal static readonly String GroupsController;
@@ -93,9 +83,7 @@
 
             ChangesController = "changes/day";
 
-            FolderController = "/api/folders";
-            SubFolderController = "api/subFolders";
-            GroupsController = "api/groups";
+            GroupsController = "api/structure/summary";
             #endregion
 
             #region Область: Инициализация параметров.

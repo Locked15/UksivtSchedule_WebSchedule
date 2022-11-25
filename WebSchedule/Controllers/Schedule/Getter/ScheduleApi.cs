@@ -151,79 +151,23 @@ namespace WebSchedule.Controllers.Schedule.Getter
         }
 
         ///<summary>
-        /// Метод для получения основных отделений из API.
+        /// Метод для получения полного списка всех групп.
         /// </summary>
-        /// <returns>Список с отделениями.</returns>
-        /// <exception cref="InvalidOperationException"></exception>
-        /// <exception cref="HttpRequestException"></exception>
-        public static List<String> GetBranches()
-        {
-            HttpClient client = new HttpClient()
-            {
-                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.FolderController))
-            };
-
-            HttpResponseMessage message = client.GetAsync(client.BaseAddress).Result;
-
-            if (message.IsSuccessStatusCode)
-            {
-                String jsonValue = message.Content.ReadAsStringAsync().Result;
-
-                return JsonSerializer.Deserialize<List<String>>(jsonValue);
-            }
-
-            return Enumerable.Empty<String>().ToList();
-        }
-
-        ///<summary>
-        /// Метод для получения направлений обучения.
-        /// </summary>
-        /// <param name="folder">Нужное отделение для получения направлений.</param>
-        /// <returns>Список с направлениями для указанного отделения.</returns>
-        /// <exception cref="InvalidOperationException"></exception>
-        /// <exception cref="HttpRequestException"></exception>
-        public static List<String> GetSubFolders(String folder)
-        {
-            HttpClient client = new HttpClient()
-            {
-                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.SubFolderController))
-            };
-
-            HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}", ScheduleApiPaths.FolderSelector, folder)).Result;
-
-            if (message.IsSuccessStatusCode)
-            {
-                String jsonValue = message.Content.ReadAsStringAsync().Result;
-
-                return JsonSerializer.Deserialize<List<String>>(jsonValue);
-            }
-
-            return Enumerable.Empty<String>().ToList();
-        }
-
-        ///<summary>
-        /// Метод для получения групп.
-        /// </summary>
-        /// <param name="folder">Отделение, в котором нужно искать группы.</param>
-        /// <param name="subFolder">Направление обучения для получения групп.</param>
         /// <returns>Список с группами.</returns>
         /// <exception cref="InvalidOperationException"></exception>
         /// <exception cref="HttpRequestException"></exception>
-        public static List<String> GetGroups(String folder, String subFolder)
+        public static List<String> GetGroups()
         {
-            HttpClient client = new HttpClient()
+            HttpClient client = new()
             {
-                BaseAddress = new Uri(String.Format("{0}/{1}", ScheduleApiPaths.BaseUrl, ScheduleApiPaths.GroupsController))
+                BaseAddress = new Uri(String.Format("{0}", ScheduleApiPaths.BaseUrl))
             };
-
-            HttpResponseMessage message = client.GetAsync(String.Format("?{0}{1}&{2}{3}", ScheduleApiPaths.FolderSelector, 
-            folder, ScheduleApiPaths.SubFolderSelector, subFolder)).Result;
-
+            HttpResponseMessage message = client.GetAsync(String.Format("/{0}", ScheduleApiPaths.GroupsController)).Result;
             if (message.IsSuccessStatusCode)
             {
                 String jsonValue = message.Content.ReadAsStringAsync().Result;
 
-                return JsonSerializer.Deserialize<List<String>>(jsonValue);
+                return JsonSerializer.Deserialize<List<String>>(jsonValue) ?? Enumerable.Empty<String>().ToList();
             }
 
             return Enumerable.Empty<String>().ToList();
