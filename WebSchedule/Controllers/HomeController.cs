@@ -102,7 +102,7 @@ namespace WebSchedule.Controllers
                                                 new CookieOptions() { Expires = DateTime.Now.AddMonths(3), 
                                                                       HttpOnly = true });
 
-            return View("MainPage");
+            return RedirectPermanent("~/Home");
         }
 
         /// <summary>

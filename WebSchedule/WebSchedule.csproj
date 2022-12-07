@@ -1,31 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 
 		<Nullable>enable</Nullable>
-
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
-
 		<ApplicationManifest>wwwroot\site-manifest.json</ApplicationManifest>
 
 		<PackageIcon>icon_128px.png</PackageIcon>
-
 		<Description>Site with UKSIVT college schedule.</Description>
-
 		<Copyright>Locked15</Copyright>
-
 		<PackageProjectUrl>https://webschedule.azurewebsites.net/</PackageProjectUrl>
 
 		<RepositoryType>git</RepositoryType>
-
 		<RepositoryUrl>https://github.com/Locked15/WebSchedule</RepositoryUrl>
 
 		<PackageTags>schedule; uksivt; college; webschedule; web schedule </PackageTags>
-
 		<ApplicationInsightsResourceId>/subscriptions/c0502672-d9b2-4f69-a607-b7300fa5fb3e/resourceGroups/Subscriprion/providers/microsoft.insights/components/WebScheduleInsight</ApplicationInsightsResourceId>
-
 		<UserSecretsId>03a9c274-dc74-4043-8f08-8816b42ff11b</UserSecretsId>
 	</PropertyGroup>
 
