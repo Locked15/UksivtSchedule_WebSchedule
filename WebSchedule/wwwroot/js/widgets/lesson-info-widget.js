@@ -733,7 +733,7 @@ function getNormalDate()
     objectWithDateTimeInfo.time.hour = currentDate.getHours();
 
     objectWithDateTimeInfo.date = new Object();
-    objectWithDateTimeInfo.date.day = currentDate.getDay();
+    objectWithDateTimeInfo.date.day = currentDate.getDate();
     objectWithDateTimeInfo.date.month = currentDate.getMonth() + 1;
 
     // Так как воскресенье имеет 0 индекс, перемещаем его в конец недели.
