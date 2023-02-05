@@ -46,12 +46,12 @@ function calculateCurrentLesson(dateInfo)
 
     if (checkToDayIsWorking(dateInfo))
     {
-        if (dateInfo.date.day == 3)
+        if (dateInfo.date.dayOfWeek == 3)
         {
             currentLesson = getLessonNumberForWednesday(getMinutesFromTime(dateInfo.time.hour, dateInfo.time.minute));
         }
 
-        else if (dateInfo.date.day == 6)
+        else if (dateInfo.date.dayOfWeek == 6)
         {
             currentLesson = getLessonNumberForSaturday(getMinutesFromTime(dateInfo.time.hour, dateInfo.time.minute));
         }
@@ -631,7 +631,6 @@ function getEndTimeForSaturday(dateInfo)
 function getEndTimeForOtherDays(dateInfo)
 {
     let calculatedTimeInMinutes;
-
     let currentTimeInMinutes = getMinutesFromTime(dateInfo.time.hour, dateInfo.time.minute);
 
     // 0 пара.
@@ -729,17 +728,18 @@ function getNormalDate()
     let objectWithDateTimeInfo = new Object();
 
     objectWithDateTimeInfo.time = new Object();
-    objectWithDateTimeInfo.time.minute = currentDate.getMinutes();
     objectWithDateTimeInfo.time.hour = currentDate.getHours();
+    objectWithDateTimeInfo.time.minute = currentDate.getMinutes();
 
     objectWithDateTimeInfo.date = new Object();
-    objectWithDateTimeInfo.date.day = currentDate.getDate();
-    objectWithDateTimeInfo.date.month = currentDate.getMonth() + 1;
+    objectWithDateTimeInfo.date.dayOfWeek = currentDate.getDay();
+    objectWithDateTimeInfo.date.dayOfMonth = currentDate.getDate();
+    objectWithDateTimeInfo.date.currentMonth = currentDate.getMonth() + 1;
 
     // Так как воскресенье имеет 0 индекс, перемещаем его в конец недели.
-    if (objectWithDateTimeInfo.date.day == 0)
+    if (objectWithDateTimeInfo.date.dayOfWeek == 0)
     {
-        objectWithDateTimeInfo.date.day = 7;
+        objectWithDateTimeInfo.date.dayOfWeek = 7;
     }
 
     return objectWithDateTimeInfo;
@@ -767,17 +767,17 @@ function getMinutesFromTime(hour, mins)
  */
 function checkToDayIsWorking(dateInfo)
 {
-    if (dateInfo.date.month == 7 || dateInfo.date.month == 8)
+    if (dateInfo.date.currentMonth == 7 || dateInfo.date.currentMonth == 8)
     {
         return false;
     }
 
-    else if (dateInfo.date.month == 1 && dateInfo.date.day < 12)
+    else if (dateInfo.date.currentMonth == 1 && dateInfo.date.dayofMonth < 12)
     {
         return false;
     }
 
-    else if (dateInfo.date.day == 7)
+    else if (dateInfo.date.dayOfWeek == 7)
     {
         return false;
     }
