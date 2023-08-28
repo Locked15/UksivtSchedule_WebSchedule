@@ -1,6 +1,6 @@
 {
-  "short_name": "Расписание",
-  "name": "Расписание УКСИВТ",
+  "short_name": "Расписание УКСиВТ",
+  "name": "Расписание УКСиВТ",
   "background_color": "azure",
   "orientation": "portrait-primary",
   "display": "standalone",
